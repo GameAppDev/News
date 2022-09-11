@@ -9,21 +9,21 @@ import Foundation
 
 protocol PListPresenterToView: PresenterToView {
     
-    func becomeFirstResponderLanguageTextField()
+    func setupTableView()
     
-    func resignFirstResponderLanguageTextField()
+    func reloadTableView()
 }
 
 protocol PListViewToPresenter: ViewToPresenter {
     
-    func getNews(request: NewsPost)
+    func getNews(isNewSearch: Bool)
     
-    func navigateToDetail()
+    func navigateToDetail(news: NewsArticle?)
 }
 
 protocol PListPresenterToInteractor {
     
-    func fetchNewsData(request: NewsPost)
+    func fetchNewsData(params: NewsPost)
 }
 
 protocol PListInteractorToPresenter {
@@ -36,4 +36,6 @@ protocol PListInteractorToPresenter {
 protocol PListPresenterToRouter: PresenterToRouter {
    
     func openDetailVC()
+    
+    func showAlert(message: String)
 }

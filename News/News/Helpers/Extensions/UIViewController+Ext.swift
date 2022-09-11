@@ -14,11 +14,11 @@ extension UIViewController {
     func hideKeyboardWhenCicked() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tapGesture.cancelsTouchesInView = false
-        view.addGestureRecognizer(tapGesture)
+        self.view.addGestureRecognizer(tapGesture)
     }
 
     @objc func hideKeyboard() {
-        view.endEditing(true)
+        self.view.endEditing(true)
     }
     
     //Navigation

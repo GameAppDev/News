@@ -11,19 +11,30 @@ class BaseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        resetNavigationBar()
-    }
-
-    private func resetNavigationBar() {
-        navigationItem.setHidesBackButton(true, animated: false)
-        navigationController?.view.backgroundColor = .clear
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.backgroundColor = .clear
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        
+        setupViews()
+        hideKeyboardWhenCicked()
     }
     
-    public func setNavigationBarItems(title: String) { }
+    private func setupViews() {
+        self.view.backgroundColor = UIColor.viewBGColour
+    }
+    
+    public func setNavigationBarItems(title: String) {
+        self.navigationItem.title = title
+        
+        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.navbarTitleColor]
+        
+        self.navigationController?.navigationBar.titleTextAttributes = textAttributes as [NSAttributedString.Key : Any]
+        /*
+        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(done))
+        self.navigationItem.setLeftBarButton(doneItem, animated: true)
+        self.navigationItem.titleView?.backgroundColor = UIColor.red
+        self.navigationItem.leftBarButtonItem?.title = title
+        */
+    }
+    
+    @objc func done() { // remove @objc for Swift 3
+
+    }
 }

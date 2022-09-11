@@ -12,8 +12,8 @@ typealias Success<T : Codable> = (BaseResponse<T>) -> Void
 typealias Error = (BaseError) -> Void
 
 class NetworkManager: Networkable {
-
-    public func get<T: Codable>(path: String, _ paramaters: [String: String]?, onSuccess: @escaping Success<T>, onError: @escaping Error) {
+    
+    func get<T>(path: String, _ paramaters: [String : String]?, onSuccess: @escaping (BaseResponse<T>) -> Void, onError: @escaping (BaseError) -> Void) where T : Decodable, T : Encodable {
         AF.request(networkRequestUrlWith(path), method: .get, parameters: paramaters).validate().responseDecodable(of: T.self) { (response) in
             guard let model = response.value else {
                 onError(BaseError(response.error))

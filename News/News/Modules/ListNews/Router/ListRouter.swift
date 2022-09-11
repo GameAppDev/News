@@ -20,4 +20,8 @@ final class ListRouter: Routerable {
 extension ListRouter: PListPresenterToRouter {
     
     func openDetailVC() { }
+    
+    func showAlert(message: String) {
+        showAlert(from: navigationController, message: message)
+    }
 }

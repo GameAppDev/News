@@ -20,7 +20,7 @@ News is based on searching news and reading detail of it
 - Xcode: Version 13.4.1
 - Language: Swift 5.5
 - Layout: Auto Layout in xib
-- Minimum iOS Version: 12.0
+- Minimum iOS Version: 13.0
 - Dependency Manager: CocoaPods
 
 

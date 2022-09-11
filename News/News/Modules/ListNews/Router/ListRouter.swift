@@ -8,4 +8,16 @@
 import Foundation
 import UIKit
 
-final class ListRouter: Routerable { }
+final class ListRouter: Routerable {
+    
+    weak var navigationController: UINavigationController?
+    
+    public func returnNC() -> UINavigationController {
+        return ListBuilder.buildModule()
+    }
+}
+
+extension ListRouter: PListPresenterToRouter {
+    
+    func openDetailVC() { }
+}

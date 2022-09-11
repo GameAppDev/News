@@ -10,5 +10,20 @@ import UIKit
 
 enum ListBuilder {
 
-    static func buildModule() -> UINavigationController { return UINavigationController() }
+    static func buildModule() -> UINavigationController {
+        let viewController = ListViewController()
+        
+        let interactor = ListInteractor()
+        let router = ListRouter()
+        let presenter = ListPresenter(view: viewController, interactor: interactor, router: router)
+        
+        let navigationController = UINavigationController(rootViewController: viewController)
+        router.navigationController = navigationController
+        
+        viewController.presenter = presenter
+        
+        interactor.presenter = presenter
+        
+        return navigationController
+    }
 }

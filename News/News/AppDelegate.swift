@@ -17,12 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        openRoot()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        openApp()
         
         return true
     }
 
-    private func openRoot() { }
+    private func openApp() {
+        let rootVC = ListRouter().returnNC()
+        
+        window?.rootViewController = rootVC
+        window?.makeKeyAndVisible()
+    }
     
     // MARK: - Core Data stack
     lazy var persistentContainer: NSPersistentContainer = {

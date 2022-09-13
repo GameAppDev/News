@@ -19,9 +19,11 @@ final class ListRouter: Routerable {
 
 extension ListRouter: PListPresenterToRouter {
     
-    func openDetailVC() { }
+    func openDetailVC(news: NewsArticle) {
+        pushVC(DetailRouter().returnVC(navigationController: (self.navigationController ?? UINavigationController()), news: news), navController: self.navigationController, animated: true)
+    }
     
     func showAlert(message: String) {
-        showAlert(from: navigationController, message: message)
+        showAlert(from: self.navigationController, message: message)
     }
 }

@@ -46,7 +46,11 @@ extension ListPresenter: PListViewToPresenter {
     }
     
     func navigateToDetail(news: NewsArticle?) {
-        router?.openDetailVC()
+        guard let selectedNews = news else {
+            router?.showAlert(message: "Please select a news")
+            return
+        }
+        router?.openDetailVC(news: selectedNews)
     }
     
     func viewDidLoad() {

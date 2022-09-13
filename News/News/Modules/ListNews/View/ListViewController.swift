@@ -37,7 +37,7 @@ extension ListViewController: PListPresenterToView {
     }
     
     func setupTableView() {
-        tableView.contentInset = UIEdgeInsets(top: CGFloat(-20).ws, left: CGFloat(0), bottom: CGFloat(15).ws, right: CGFloat(0))
+        tableView.contentInset = UIEdgeInsets(top: CGFloat(0), left: CGFloat(0), bottom: CGFloat(15).ws, right: CGFloat(0))
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none

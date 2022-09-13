@@ -35,7 +35,7 @@ protocol PListInteractorToPresenter {
 
 protocol PListPresenterToRouter: PresenterToRouter {
    
-    func openDetailVC()
+    func openDetailVC(news: NewsArticle)
     
     func showAlert(message: String)
 }

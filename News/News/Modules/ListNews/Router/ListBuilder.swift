@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-enum ListBuilder {
+struct ListBuilder {
 
     static func buildModule() -> UINavigationController {
         let viewController = ListViewController()

@@ -1,16 +1,14 @@
 //
-//  NewsTableViewCell.swift
+//  DetailTableViewCell.swift
 //  News
 //
-//  Created by Oguzhan Yalcin on 11.09.2022.
+//  Created by Oguzhan Yalcin on 13.09.2022.
 //
 
 import UIKit
 
-class NewsTableViewCell: UITableViewCell {
+class DetailTableViewCell: UITableViewCell {
 
-    @IBOutlet private weak var containerView: UIView!
-    
     @IBOutlet private weak var newsImageView: UIImageView!
     
     @IBOutlet private weak var titleLabel: UILabel!
@@ -31,9 +29,7 @@ class NewsTableViewCell: UITableViewCell {
         dateLabel.textColor = UIColor.textColor
         dateLabel.font = UIFont.textFont
         
-        containerView.backgroundColor = UIColor.itemBGColour
-        containerView.roundCorners(size: CGFloat(6).ws)
-        newsImageView.roundCorners(size: CGFloat(6).ws)
+        newsImageView.roundCorners(size: CGFloat(10).ws)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

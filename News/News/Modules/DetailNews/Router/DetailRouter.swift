@@ -19,7 +19,9 @@ final class DetailRouter: Routerable {
 
 extension DetailRouter: PDetailPresenterToRouter {
     
-    func openWebVC(url: URL) { }
+    func openWebVC(url: URL) {
+        pushVC(WebRouter().returnVC(navigationController: (self.navigationController ?? UINavigationController()), url: url), navController: self.navigationController, animated: true)
+    }
     
     func showAlert(message: String) {
         showAlert(from: navigationController, message: message)

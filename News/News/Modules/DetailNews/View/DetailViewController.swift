@@ -84,6 +84,6 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
 extension DetailViewController: PrimaryButtonCellDelegate {
     
     func primaryButtonClickAction() {
-        presenter?.navigateToWebView(newsUrl: presenter?.selectedNews?.urlToImage)
+        presenter?.navigateToWebView(newsUrl: presenter?.selectedNews?.url)
     }
 }

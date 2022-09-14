@@ -14,6 +14,7 @@ final class DetailPresenter {
     private var router: DetailRouter?
     
     public var selectedNews: NewsArticle?
+    private var isFav: Bool = false
     
     init(view: DetailViewController, interactor: DetailInteractor, router: DetailRouter) {
         self.view = view
@@ -27,13 +28,12 @@ extension DetailPresenter: PDetailViewToPresenter {
     func viewDidLoad() {
         view?.setupViews()
         view?.setupTableView()
+        interactor?.getFavNewsStatus()
     }
     
     func viewWillAppear() {
         view?.setNavBar()
     }
-    
-    func favNews() { }
     
     func navigateToWebView(newsUrl: String?) {
         guard let url = URL(string: newsUrl ?? "") else {
@@ -41,5 +41,17 @@ extension DetailPresenter: PDetailViewToPresenter {
             return
         }
         router?.openWebVC(url: url)
+    }
+    
+    func setFavNewsStatus() {
+        interactor?.setFavNews(isFav: !isFav)
+    }
+}
+
+extension DetailPresenter: PDetailInteractorToPresenter {
+    
+    func onSuccessFavStatus(isFav: Bool) {
+        self.isFav = isFav
+        view?.setupFavNews(isFav: isFav)
     }
 }

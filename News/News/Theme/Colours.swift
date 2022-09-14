@@ -10,7 +10,7 @@ import UIKit
 
 extension UIColor {
     
-    static let viewBGColour     = UIColor(red: 50/255, green: 100/255, blue: 200/255, alpha: 1)
+    static let viewBGColour     = UIColor(red: 50/255, green: 150/255, blue: 250/255, alpha: 1)
     static let textColor        = UIColor(red: 60/255, green: 60/255, blue: 60/255, alpha: 1)
     static let titleColour      = UIColor(red: 60/255, green: 60/255, blue: 160/255, alpha: 1)
     static let navbarTitleColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)

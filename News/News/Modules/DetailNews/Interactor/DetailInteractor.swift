@@ -13,3 +13,16 @@ final class DetailInteractor: Interactorable {
     
     public var apiState: ApiState = .beforeRequest
 }
+
+extension DetailInteractor: PDetailPresenterToInteractor {
+    
+    func getFavNewsStatus() {
+        //get Core Data Value
+        presenter?.onSuccessFavStatus(isFav: false)
+    }
+    
+    func setFavNews(isFav: Bool) {
+        //set Core Data Value with isFav
+        presenter?.onSuccessFavStatus(isFav: isFav)
+    }
+}

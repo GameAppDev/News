@@ -16,13 +16,13 @@ final class DetailInteractor: Interactorable {
 
 extension DetailInteractor: PDetailPresenterToInteractor {
     
-    func getFavNewsStatus() {
-        //get Core Data Value
-        presenter?.onSuccessFavStatus(isFav: false)
+    func getFavNewsStatus(news: NewsArticle) {
+        let isFav: Bool = CoreDataManager().getSelectedNewsStatus(news)
+        presenter?.onSuccessFavStatus(isFav: isFav)
     }
     
-    func setFavNews(isFav: Bool) {
-        //set Core Data Value with isFav
+    func setFavNews(news: NewsArticle, isFav: Bool) {
+        CoreDataManager().setFavouriteNews(with: news, isFav: isFav)
         presenter?.onSuccessFavStatus(isFav: isFav)
     }
 }

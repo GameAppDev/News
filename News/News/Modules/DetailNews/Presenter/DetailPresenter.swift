@@ -28,7 +28,9 @@ extension DetailPresenter: PDetailViewToPresenter {
     func viewDidLoad() {
         view?.setupViews()
         view?.setupTableView()
-        interactor?.getFavNewsStatus()
+        if let news = selectedNews {
+            interactor?.getFavNewsStatus(news: news)
+        }
     }
     
     func viewWillAppear() {
@@ -44,7 +46,11 @@ extension DetailPresenter: PDetailViewToPresenter {
     }
     
     func setFavNewsStatus() {
-        interactor?.setFavNews(isFav: !isFav)
+        guard let news = selectedNews else {
+            router?.showAlert(message: "Try again")
+            return
+        }
+        interactor?.setFavNews(news: news, isFav: !isFav)
     }
 }
 
@@ -52,6 +58,6 @@ extension DetailPresenter: PDetailInteractorToPresenter {
     
     func onSuccessFavStatus(isFav: Bool) {
         self.isFav = isFav
-        view?.setupFavNews(isFav: isFav)
+        view?.setupFavButton(isFav: isFav)
     }
 }

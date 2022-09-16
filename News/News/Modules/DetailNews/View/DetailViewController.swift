@@ -50,7 +50,7 @@ extension DetailViewController: PDetailPresenterToView {
         tableView.registerHeaderFooterView(PrimaryButtonTableViewCell.self)
     }
     
-    func setupFavNews(isFav: Bool) {
+    func setupFavButton(isFav: Bool) {
         let imageSystemName: String = isFav ? ("heart.fill") : ("heart")
         
         let favButton = UIBarButtonItem(image: UIImage(systemName: imageSystemName), style: .done, target: self, action: #selector(favNewsClicked(sender:)))

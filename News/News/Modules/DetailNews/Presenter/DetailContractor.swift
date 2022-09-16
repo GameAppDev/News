@@ -11,7 +11,7 @@ protocol PDetailPresenterToView: PresenterToView {
     
     func setupTableView()
     
-    func setupFavNews(isFav: Bool)
+    func setupFavButton(isFav: Bool)
 }
 
 protocol PDetailViewToPresenter: ViewToPresenter {
@@ -23,9 +23,9 @@ protocol PDetailViewToPresenter: ViewToPresenter {
 
 protocol PDetailPresenterToInteractor {
     
-    func getFavNewsStatus()
+    func getFavNewsStatus(news: NewsArticle)
     
-    func setFavNews(isFav: Bool)
+    func setFavNews(news: NewsArticle, isFav: Bool)
 }
 
 protocol PDetailInteractorToPresenter {

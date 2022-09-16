@@ -26,15 +26,5 @@ class BaseViewController: UIViewController {
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.navbarTitleColor]
         
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes as [NSAttributedString.Key : Any]
-        /*
-        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(done))
-        self.navigationItem.setLeftBarButton(doneItem, animated: true)
-        self.navigationItem.titleView?.backgroundColor = UIColor.red
-        self.navigationItem.leftBarButtonItem?.title = title
-        */
-    }
-    
-    @objc func done() { // remove @objc for Swift 3
-
     }
 }

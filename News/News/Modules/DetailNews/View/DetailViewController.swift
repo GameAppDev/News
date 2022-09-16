@@ -24,6 +24,10 @@ class DetailViewController: BaseViewController {
         
         presenter?.viewWillAppear()
     }
+    
+    @objc func favNewsClicked(sender: UIBarButtonItem) {
+        presenter?.setFavNewsStatus()
+    }
 }
 
 extension DetailViewController: PDetailPresenterToView {
@@ -44,6 +48,14 @@ extension DetailViewController: PDetailPresenterToView {
         tableView.keyboardDismissMode = .onDrag
         tableView.registerCell(DetailTableViewCell.self)
         tableView.registerHeaderFooterView(PrimaryButtonTableViewCell.self)
+    }
+    
+    func setupFavButton(isFav: Bool) {
+        let imageSystemName: String = isFav ? ("heart.fill") : ("heart")
+        
+        let favButton = UIBarButtonItem(image: UIImage(systemName: imageSystemName), style: .done, target: self, action: #selector(favNewsClicked(sender:)))
+        
+        self.navigationItem.rightBarButtonItem = favButton
     }
 }
 
@@ -84,6 +96,6 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
 extension DetailViewController: PrimaryButtonCellDelegate {
     
     func primaryButtonClickAction() {
-        presenter?.navigateToWebView(newsUrl: presenter?.selectedNews?.urlToImage)
+        presenter?.navigateToWebView(newsUrl: presenter?.selectedNews?.url)
     }
 }

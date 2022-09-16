@@ -10,18 +10,28 @@ import Foundation
 protocol PDetailPresenterToView: PresenterToView {
     
     func setupTableView()
+    
+    func setupFavButton(isFav: Bool)
 }
 
 protocol PDetailViewToPresenter: ViewToPresenter {
     
-    func favNews()
-    
     func navigateToWebView(newsUrl: String?)
+    
+    func setFavNewsStatus()
 }
 
-protocol PDetailPresenterToInteractor { }
+protocol PDetailPresenterToInteractor {
+    
+    func getFavNewsStatus(news: NewsArticle)
+    
+    func setFavNews(news: NewsArticle, isFav: Bool)
+}
 
-protocol PDetailInteractorToPresenter { }
+protocol PDetailInteractorToPresenter {
+    
+    func onSuccessFavStatus(isFav: Bool)
+}
 
 protocol PDetailPresenterToRouter: PresenterToRouter {
    

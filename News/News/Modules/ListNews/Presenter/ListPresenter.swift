@@ -15,7 +15,7 @@ final class ListPresenter {
     
     public var news: [NewsArticle] = []
     
-    public var isLoadMore: Bool = true
+    public var isBusy: Bool = true
     public var page: Int = 1
     public var searchedKey: String = ""
     
@@ -36,7 +36,7 @@ extension ListPresenter: PListViewToPresenter {
     
     func getNews(isNewSearch: Bool) {
         guard searchedKey != "" else { return }
-        isLoadMore = true
+        isBusy = true
         
         isNewSearch ? (page = 1) : (page += 1)
         isNewSearch ? (news.removeAll()) : ()
@@ -66,13 +66,13 @@ extension ListPresenter: PListViewToPresenter {
 extension ListPresenter: PListInteractorToPresenter {
     
     func onSuccessNews(response: [NewsArticle]) {
-        isLoadMore = false
+        isBusy = false
         news.append(contentsOf: response)
         view?.reloadTableView()
     }
     
     func onErrorNews(error: BaseError) {
-        isLoadMore = false
+        isBusy = false
         resetSearchStatus()
         view?.reloadTableView()
         router?.showAlert(message: error.errorMessage ?? "Try again".localized)

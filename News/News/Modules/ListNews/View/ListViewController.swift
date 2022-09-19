@@ -78,7 +78,7 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if !(presenter?.isLoadMore ?? true) && (presenter?.news.count == indexPath.row + 1) {
+        if !(presenter?.isBusy ?? true) && (presenter?.news.count == indexPath.row + 1) {
             presenter?.getNews(isNewSearch: false)
         }
     }

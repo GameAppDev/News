@@ -9,7 +9,7 @@ import Foundation
 
 final class ListPresenter {
     
-    private var view: ListViewController?
+    private weak var view: ListViewController?
     private var interactor: ListInteractor?
     private var router: ListRouter?
     

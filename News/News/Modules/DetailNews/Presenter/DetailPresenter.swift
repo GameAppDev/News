@@ -9,7 +9,7 @@ import Foundation
 
 final class DetailPresenter {
     
-    private var view: DetailViewController?
+    private weak var view: DetailViewController?
     private var interactor: DetailInteractor?
     private var router: DetailRouter?
     

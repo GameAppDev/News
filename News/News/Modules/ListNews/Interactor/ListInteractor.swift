@@ -9,7 +9,7 @@ import Foundation
 
 final class ListInteractor: Interactorable {
     
-    public var presenter: ListPresenter?
+    public weak var presenter: ListPresenter?
     
     public var apiState: ApiState = .beforeRequest
 }

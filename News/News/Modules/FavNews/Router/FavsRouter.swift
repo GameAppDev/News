@@ -1,30 +1,25 @@
 //
-//  ListRouter.swift
+//  FavsRouter.swift
 //  News
 //
-//  Created by Oguzhan Yalcin on 11.09.2022.
+//  Created by Oguzhan Yalcin on 7.10.2022.
 //
 
 import Foundation
 import UIKit
 
-final class ListRouter {
+final class FavsRouter {
     
-    public func returnNC() -> UINavigationController {
-        return ListBuilder.buildModule()
+    public func returnVC() -> UIViewController {
+        return FavsBuilder.buildModule()
     }
 }
 
-extension ListRouter: PListPresenterToRouter {
+extension FavsRouter: PFavsPresenterToRouter {
     
     func openDetailVC(news: NewsArticle) {
         let detailVC = DetailRouter().returnVC(news: news)
         AppRouter.shared.pushVC(detailVC, animated: true)
-    }
-    
-    func openFavNewsVC() {
-        let favNewsVC = FavsRouter().returnVC()
-        AppRouter.shared.pushVC(favNewsVC, animated: true)
     }
     
     func showAlert(message: String) {

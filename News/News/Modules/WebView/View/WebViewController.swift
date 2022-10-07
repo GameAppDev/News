@@ -31,6 +31,7 @@ extension WebViewController: PWebPresenterToView {
     
     func setupViews() {
         webView.backgroundColor = UIColor.clear
+        webView.configuration.allowsInlineMediaPlayback = false
     }
     
     func setNavBar() {

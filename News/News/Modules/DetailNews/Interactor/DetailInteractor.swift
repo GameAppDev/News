@@ -9,7 +9,7 @@ import Foundation
 
 final class DetailInteractor: Interactorable {
     
-    public var presenter: DetailPresenter?
+    public weak var presenter: DetailPresenter?
     
     public var apiState: ApiState = .beforeRequest
 }

@@ -8,18 +8,18 @@
 import Foundation
 import UIKit
 
-final class WebRouter: Routerable {
+final class WebRouter {
     
-    weak var navigationController: UINavigationController?
-    
-    public func returnVC(navigationController: UINavigationController, url: URL) -> UIViewController {
-        return WebBuilder.buildModule(navigationController: navigationController, url: url)
+    public func returnVC(url: URL) -> UIViewController {
+        return WebBuilder.buildModule(url: url)
     }
 }
 
 extension WebRouter: PWebPresenterToRouter {
     
     func showAlert(message: String) {
-        showAlert(from: navigationController, message: message)
+        if let navigationController = AppRouter.shared.navigationController {
+            showAlert(from: navigationController, message: message)
+        }
     }
 }

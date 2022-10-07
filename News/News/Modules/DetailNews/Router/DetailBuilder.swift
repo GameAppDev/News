@@ -10,7 +10,7 @@ import UIKit
 
 struct DetailBuilder {
 
-    static func buildModule(navigationController: UINavigationController, news: NewsArticle) -> UIViewController {
+    static func buildModule(news: NewsArticle) -> UIViewController {
         let viewController = DetailViewController()
         
         let interactor = DetailInteractor()
@@ -18,8 +18,6 @@ struct DetailBuilder {
         let presenter = DetailPresenter(view: viewController, interactor: interactor, router: router)
         
         presenter.selectedNews = news
-        
-        router.navigationController = navigationController
         
         viewController.presenter = presenter
         

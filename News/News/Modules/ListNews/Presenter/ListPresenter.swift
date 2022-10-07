@@ -9,13 +9,13 @@ import Foundation
 
 final class ListPresenter {
     
-    private var view: ListViewController?
+    private weak var view: ListViewController?
     private var interactor: ListInteractor?
     private var router: ListRouter?
     
     public var news: [NewsArticle] = []
     
-    public var isLoadMore: Bool = true
+    public var isBusy: Bool = true
     public var page: Int = 1
     public var searchedKey: String = ""
     
@@ -28,7 +28,6 @@ final class ListPresenter {
     private func resetSearchStatus() {
         news.removeAll()
         page = 1
-        searchedKey = ""
     }
 }
 
@@ -36,10 +35,9 @@ extension ListPresenter: PListViewToPresenter {
     
     func getNews(isNewSearch: Bool) {
         guard searchedKey != "" else { return }
-        isLoadMore = true
+        isBusy = true
         
-        isNewSearch ? (page = 1) : (page += 1)
-        isNewSearch ? (news.removeAll()) : ()
+        isNewSearch ? (resetSearchStatus()) : (page += 1)
         
         let params: NewsPost = NewsPost(searchedKey: searchedKey, page: page)
         interactor?.fetchNewsData(params: params)
@@ -51,6 +49,10 @@ extension ListPresenter: PListViewToPresenter {
             return
         }
         router?.openDetailVC(news: selectedNews)
+    }
+    
+    func navigateToFavNews() {
+        router?.openFavNewsVC()
     }
     
     func viewDidLoad() {
@@ -66,13 +68,13 @@ extension ListPresenter: PListViewToPresenter {
 extension ListPresenter: PListInteractorToPresenter {
     
     func onSuccessNews(response: [NewsArticle]) {
-        isLoadMore = false
+        isBusy = false
         news.append(contentsOf: response)
         view?.reloadTableView()
     }
     
     func onErrorNews(error: BaseError) {
-        isLoadMore = false
+        isBusy = false
         resetSearchStatus()
         view?.reloadTableView()
         router?.showAlert(message: error.errorMessage ?? "Try again".localized)

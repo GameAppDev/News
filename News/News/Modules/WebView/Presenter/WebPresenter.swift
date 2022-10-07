@@ -9,7 +9,7 @@ import Foundation
 
 final class WebPresenter {
     
-    private var view: WebViewController?
+    private weak var view: WebViewController?
     private var interactor: WebInteractor?
     private var router: WebRouter?
     

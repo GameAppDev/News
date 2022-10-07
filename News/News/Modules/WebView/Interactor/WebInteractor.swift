@@ -9,7 +9,7 @@ import Foundation
 
 final class WebInteractor: Interactorable {
     
-    public var presenter: WebPresenter?
+    public weak var presenter: WebPresenter?
     
     public var apiState: ApiState = .beforeRequest
 }

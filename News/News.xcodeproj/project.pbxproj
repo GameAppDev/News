@@ -50,6 +50,7 @@
 		5C4FA7DC28D1E6CB00EA67B7 /* WebBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4FA7DB28D1E6CB00EA67B7 /* WebBuilder.swift */; };
 		5C4FA7DF28D1E6E100EA67B7 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4FA7DD28D1E6E100EA67B7 /* WebViewController.swift */; };
 		5C4FA7E028D1E6E100EA67B7 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C4FA7DE28D1E6E100EA67B7 /* WebViewController.xib */; };
+		5C6B477E28D90D5100249E76 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6B477D28D90D5100249E76 /* AppRouter.swift */; };
 		5C6E84A528CE09AA00EBB1EB /* ApplicationConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E84A428CE09AA00EBB1EB /* ApplicationConstant.swift */; };
 		5C6E84A728CE0D4800EBB1EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C6E84A628CE0D4800EBB1EB /* Main.storyboard */; };
 		5C6E84A928CE255000EBB1EB /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E84A828CE255000EBB1EB /* String+Ext.swift */; };
@@ -155,6 +156,7 @@
 		5C4FA7DB28D1E6CB00EA67B7 /* WebBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebBuilder.swift; sourceTree = "<group>"; };
 		5C4FA7DD28D1E6E100EA67B7 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		5C4FA7DE28D1E6E100EA67B7 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
+		5C6B477D28D90D5100249E76 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		5C6E84A428CE09AA00EBB1EB /* ApplicationConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationConstant.swift; sourceTree = "<group>"; };
 		5C6E84A628CE0D4800EBB1EB /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		5C6E84A828CE255000EBB1EB /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 			children = (
 				5C44891C28CDF6D3004BB02E /* AppDelegate.swift */,
 				5C44891E28CDF6D3004BB02E /* SceneDelegate.swift */,
+				5C6B477D28D90D5100249E76 /* AppRouter.swift */,
 				5C44895028CDF901004BB02E /* Modules */,
 				5C44896B28CDFAB6004BB02E /* Helpers */,
 				5C4489A828CDFD2E004BB02E /* Theme */,
@@ -297,6 +300,7 @@
 			children = (
 				5C44895128CDF944004BB02E /* ListNews */,
 				5CA8CC2228D0E52300701A9B /* DetailNews */,
+				5CCB3D8C28F06B79006926C8 /* FavNews */,
 				5C4FA7CB28D1E64B00EA67B7 /* WebView */,
 			);
 			path = Modules;
@@ -587,6 +591,72 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		5CCB3D8328F03AD1006926C8 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				5CCB3D8528F03AED006926C8 /* Nunito-Bold.ttf */,
+				5CCB3D8728F03AED006926C8 /* Nunito-Italic.ttf */,
+				5CCB3D8428F03AED006926C8 /* Nunito-Light.ttf */,
+				5CCB3D8628F03AED006926C8 /* Nunito-Medium.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		5CCB3D8C28F06B79006926C8 /* FavNews */ = {
+			isa = PBXGroup;
+			children = (
+				5CCB3D9128F06B9E006926C8 /* View */,
+				5CCB3D9028F06B96006926C8 /* Interactor */,
+				5CCB3D8F28F06B90006926C8 /* Presenter */,
+				5CCB3D8E28F06B8B006926C8 /* Entity */,
+				5CCB3D8D28F06B86006926C8 /* Router */,
+			);
+			path = FavNews;
+			sourceTree = "<group>";
+		};
+		5CCB3D8D28F06B86006926C8 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				5CCB3D9228F06BD2006926C8 /* FavsRouter.swift */,
+				5CCB3D9428F06BDB006926C8 /* FavsBuilder.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		5CCB3D8E28F06B8B006926C8 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				5CCB3DA828F06C99006926C8 /* FavsEntity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		5CCB3D8F28F06B90006926C8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				5CCB3DA428F06C69006926C8 /* FavsPresenter.swift */,
+				5CCB3DA628F06C72006926C8 /* FavsContractor.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		5CCB3D9028F06B96006926C8 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				5CCB3DA228F06C51006926C8 /* FavsInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		5CCB3D9128F06B9E006926C8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5CCB3D9E28F06C3E006926C8 /* FavsViewController.swift */,
+				5CCB3D9F28F06C3E006926C8 /* FavsViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		DCFF282FD9E1EC074F503153 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -862,11 +932,13 @@
 				5CA8CC2F28D0E5D900701A9B /* DetailPresenter.swift in Sources */,
 				5C4489A328CDFC96004BB02E /* UITableView+Ext.swift in Sources */,
 				5C4FA7DF28D1E6E100EA67B7 /* WebViewController.swift in Sources */,
+				5CCB3D9328F06BD2006926C8 /* FavsRouter.swift in Sources */,
 				5C44895E28CDF9D4004BB02E /* ListInteractor.swift in Sources */,
 				5C6E84A528CE09AA00EBB1EB /* ApplicationConstant.swift in Sources */,
 				5C4489A728CDFCCD004BB02E /* UIView+Ext.swift in Sources */,
 				5C44896E28CDFAE8004BB02E /* BaseViewController.swift in Sources */,
 				5C44897D28CDFB89004BB02E /* Contractable.swift in Sources */,
+				5CCB3DA328F06C51006926C8 /* FavsInteractor.swift in Sources */,
 				5C44896828CDFA06004BB02E /* ListContractor.swift in Sources */,
 				5C44899D28CDFC05004BB02E /* NSObject+Ext.swift in Sources */,
 				5CAA790428D4CBB700F0F1C3 /* CoreDataManager.swift in Sources */,
@@ -876,23 +948,29 @@
 				5C44891D28CDF6D3004BB02E /* AppDelegate.swift in Sources */,
 				5C44898128CDFB89004BB02E /* Networkable.swift in Sources */,
 				5CA8CC3328D0E5F200701A9B /* DetailInteractor.swift in Sources */,
+				5CCB3DA728F06C72006926C8 /* FavsContractor.swift in Sources */,
 				5CA8CC3B28D0E9D000701A9B /* DetailTableViewCell.swift in Sources */,
 				5C44899B28CDFBE6004BB02E /* CGFloat+Ext.swift in Sources */,
 				5CA8CC2B28D0E5C300701A9B /* DetailBuilder.swift in Sources */,
 				5CA8CC4128D0F3A900701A9B /* PrimaryButtonTableViewCell.swift in Sources */,
+				5CCB3D9528F06BDB006926C8 /* FavsBuilder.swift in Sources */,
 				5C6E84A928CE255000EBB1EB /* String+Ext.swift in Sources */,
 				5C4489AC28CDFD4C004BB02E /* Colours.swift in Sources */,
+				5CCB3DA528F06C69006926C8 /* FavsPresenter.swift in Sources */,
 				5C44897F28CDFB89004BB02E /* Presenterable.swift in Sources */,
 				5CA8CC2D28D0E5CF00701A9B /* DetailEntity.swift in Sources */,
+				5C6B477E28D90D5100249E76 /* AppRouter.swift in Sources */,
 				5C4FA7D428D1E6A400EA67B7 /* WebEntity.swift in Sources */,
 				5CA8CC3128D0E5E200701A9B /* DetailContractor.swift in Sources */,
 				5C44892728CDF6D3004BB02E /* News.xcdatamodeld in Sources */,
 				5C44898028CDFB89004BB02E /* Routerable.swift in Sources */,
+				5CCB3DA028F06C3E006926C8 /* FavsViewController.swift in Sources */,
 				5C44895B28CDF9CA004BB02E /* ListViewController.swift in Sources */,
 				5C44896028CDF9DD004BB02E /* ListPresenter.swift in Sources */,
 				5C44898228CDFB89004BB02E /* Viewable.swift in Sources */,
 				5C44899928CDFBC2004BB02E /* Array+Ext.swift in Sources */,
 				5C44896628CDF9FD004BB02E /* ListBuilder.swift in Sources */,
+				5CCB3DA928F06C99006926C8 /* FavsEntity.swift in Sources */,
 				5CA8CC2928D0E5B900701A9B /* DetailRouter.swift in Sources */,
 				5C4FA7DC28D1E6CB00EA67B7 /* WebBuilder.swift in Sources */,
 				5C4FA7D828D1E6B900EA67B7 /* WebContractor.swift in Sources */,

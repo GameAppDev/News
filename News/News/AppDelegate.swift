@@ -19,16 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        openApp()
+        AppRouter.shared.openApp()
         
         return true
-    }
-
-    private func openApp() {
-        let rootVC = ListRouter().returnNC()
-        
-        window?.rootViewController = rootVC
-        window?.makeKeyAndVisible()
     }
     
     // MARK: - Core Data stack

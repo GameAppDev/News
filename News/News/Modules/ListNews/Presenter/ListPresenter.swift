@@ -28,7 +28,6 @@ final class ListPresenter {
     private func resetSearchStatus() {
         news.removeAll()
         page = 1
-        searchedKey = ""
     }
 }
 
@@ -38,8 +37,7 @@ extension ListPresenter: PListViewToPresenter {
         guard searchedKey != "" else { return }
         isBusy = true
         
-        isNewSearch ? (page = 1) : (page += 1)
-        isNewSearch ? (news.removeAll()) : ()
+        isNewSearch ? (resetSearchStatus()) : (page += 1)
         
         let params: NewsPost = NewsPost(searchedKey: searchedKey, page: page)
         interactor?.fetchNewsData(params: params)

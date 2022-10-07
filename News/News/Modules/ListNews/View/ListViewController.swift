@@ -44,6 +44,7 @@ extension ListViewController: PListPresenterToView {
         tableView.keyboardDismissMode = .onDrag
         tableView.registerCell(NewsTableViewCell.self)
         tableView.registerHeaderFooterView(SearchBarTableViewCell.self)
+        tableView.registerHeaderFooterView(PrimaryButtonTableViewCell.self)
     }
     
     func reloadTableView() {
@@ -95,6 +96,19 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
         
         return searchBarCell
     }
+    
+    //Footer
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard let buttonCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: PrimaryButtonTableViewCell.className) as? PrimaryButtonTableViewCell else { return UIView() }
+        
+        buttonCell.configureCell(delegate: self, name: "Fav News")
+        
+        return buttonCell
+    }
 }
 
 extension ListViewController: UISearchBarDelegate {
@@ -107,5 +121,12 @@ extension ListViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
         presenter?.searchedKey = searchBar.searchTextField.text ?? ""
         presenter?.getNews(isNewSearch: true)
+    }
+}
+
+extension ListViewController: PrimaryButtonCellDelegate {
+    
+    func primaryButtonClickAction() {
+        
     }
 }

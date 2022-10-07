@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Nunito-Medium.ttf">
+            <string>Nunito-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" id="gTV-IL-0wX" customClass="FavNewsCollectionViewCell" customModule="News" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="140" height="220"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="140" height="220"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8wz-BD-I4X" userLabel="cellView">
+                        <rect key="frame" x="0.0" y="0.0" width="140" height="220"/>
+                        <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tu5-Rg-cbv" userLabel="marginH10">
+                                <rect key="frame" x="0.0" y="140" width="140" height="10"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tu5-Rg-cbv" secondAttribute="height" multiplier="14:1" id="cWT-q8-yXl"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOy-Bp-T8Q">
+                                <rect key="frame" x="5" y="150" width="130" height="0.0"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e42-ld-STT">
+                                <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="e42-ld-STT" secondAttribute="height" multiplier="1:1" id="FcD-Tf-D1e"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pOy-Bp-T8Q" firstAttribute="leading" secondItem="8wz-BD-I4X" secondAttribute="leading" constant="5" id="0DU-Lm-nxs"/>
+                            <constraint firstItem="e42-ld-STT" firstAttribute="leading" secondItem="8wz-BD-I4X" secondAttribute="leading" id="3h9-6l-UMx"/>
+                            <constraint firstItem="pOy-Bp-T8Q" firstAttribute="top" secondItem="tu5-Rg-cbv" secondAttribute="bottom" id="4IM-U5-vHM"/>
+                            <constraint firstItem="tu5-Rg-cbv" firstAttribute="top" secondItem="e42-ld-STT" secondAttribute="bottom" id="6K7-2r-uVz"/>
+                            <constraint firstItem="e42-ld-STT" firstAttribute="top" secondItem="8wz-BD-I4X" secondAttribute="top" id="6m1-Xv-4CC"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pOy-Bp-T8Q" secondAttribute="bottom" id="7Y1-uN-338"/>
+                            <constraint firstAttribute="trailing" secondItem="pOy-Bp-T8Q" secondAttribute="trailing" constant="5" id="Aem-eQ-aYO"/>
+                            <constraint firstAttribute="trailing" secondItem="e42-ld-STT" secondAttribute="trailing" id="YP0-Mg-xTF"/>
+                            <constraint firstItem="tu5-Rg-cbv" firstAttribute="leading" secondItem="8wz-BD-I4X" secondAttribute="leading" id="egn-ps-0Cn"/>
+                            <constraint firstAttribute="trailing" secondItem="tu5-Rg-cbv" secondAttribute="trailing" id="lvF-18-ggX"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="8wz-BD-I4X" secondAttribute="bottom" id="72A-WD-vst"/>
+                <constraint firstItem="8wz-BD-I4X" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="862-d2-F2c"/>
+                <constraint firstAttribute="trailing" secondItem="8wz-BD-I4X" secondAttribute="trailing" id="If0-nN-3H4"/>
+                <constraint firstItem="8wz-BD-I4X" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="pIB-fp-Zg0"/>
+            </constraints>
+            <connections>
+                <outlet property="containerView" destination="8wz-BD-I4X" id="wdQ-9W-H6z"/>
+                <outlet property="newsImageView" destination="e42-ld-STT" id="sdK-eL-rdA"/>
+                <outlet property="titleLabel" destination="pOy-Bp-T8Q" id="dOc-me-YfL"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="82"/>
+        </collectionViewCell>
+    </objects>
+</document>

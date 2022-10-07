@@ -10,7 +10,7 @@ import UIKit
 
 struct WebBuilder {
 
-    static func buildModule(navigationController: UINavigationController, url: URL) -> UIViewController {
+    static func buildModule(url: URL) -> UIViewController {
         let viewController = WebViewController()
         
         let interactor = WebInteractor()
@@ -18,8 +18,6 @@ struct WebBuilder {
         let presenter = WebPresenter(view: viewController, interactor: interactor, router: router)
         
         presenter.url = url
-        
-        router.navigationController = navigationController
         
         viewController.presenter = presenter
         

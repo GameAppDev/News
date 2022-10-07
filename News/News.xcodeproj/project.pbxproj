@@ -85,6 +85,8 @@
 		5CCB3DA528F06C69006926C8 /* FavsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB3DA428F06C69006926C8 /* FavsPresenter.swift */; };
 		5CCB3DA728F06C72006926C8 /* FavsContractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB3DA628F06C72006926C8 /* FavsContractor.swift */; };
 		5CCB3DA928F06C99006926C8 /* FavsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB3DA828F06C99006926C8 /* FavsEntity.swift */; };
+		5CE8874A28F086CE0059431B /* FavNewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8874828F086CE0059431B /* FavNewsCollectionViewCell.swift */; };
+		5CE8874B28F086CE0059431B /* FavNewsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CE8874928F086CE0059431B /* FavNewsCollectionViewCell.xib */; };
 		B16798FAF70186760A519484 /* Pods_News.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 340F56EAB471065005C26432 /* Pods_News.framework */; };
 		B7420FF6380634CEF50BFA3A /* Pods_News_NewsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202D8388D29BF201BD96209C /* Pods_News_NewsUITests.framework */; };
 /* End PBXBuildFile section */
@@ -191,6 +193,8 @@
 		5CCB3DA428F06C69006926C8 /* FavsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavsPresenter.swift; sourceTree = "<group>"; };
 		5CCB3DA628F06C72006926C8 /* FavsContractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavsContractor.swift; sourceTree = "<group>"; };
 		5CCB3DA828F06C99006926C8 /* FavsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavsEntity.swift; sourceTree = "<group>"; };
+		5CE8874828F086CE0059431B /* FavNewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavNewsCollectionViewCell.swift; sourceTree = "<group>"; };
+		5CE8874928F086CE0059431B /* FavNewsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavNewsCollectionViewCell.xib; sourceTree = "<group>"; };
 		62E866F53341FC6744337EEF /* Pods-News.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News.release.xcconfig"; path = "Target Support Files/Pods-News/Pods-News.release.xcconfig"; sourceTree = "<group>"; };
 		737D7579AEAC11FCDFAEF11A /* Pods_NewsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B22056FCEE0A41770F68724C /* Pods-News-NewsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News-NewsUITests.debug.xcconfig"; path = "Target Support Files/Pods-News-NewsUITests/Pods-News-NewsUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -651,10 +655,20 @@
 		5CCB3D9128F06B9E006926C8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5CE8874728F086AB0059431B /* CollectionViews */,
 				5CCB3D9E28F06C3E006926C8 /* FavsViewController.swift */,
 				5CCB3D9F28F06C3E006926C8 /* FavsViewController.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		5CE8874728F086AB0059431B /* CollectionViews */ = {
+			isa = PBXGroup;
+			children = (
+				5CE8874828F086CE0059431B /* FavNewsCollectionViewCell.swift */,
+				5CE8874928F086CE0059431B /* FavNewsCollectionViewCell.xib */,
+			);
+			path = CollectionViews;
 			sourceTree = "<group>";
 		};
 		DCFF282FD9E1EC074F503153 /* Frameworks */ = {
@@ -791,6 +805,7 @@
 				5C4FA7E028D1E6E100EA67B7 /* WebViewController.xib in Resources */,
 				5CCB3D8928F03AED006926C8 /* Nunito-Bold.ttf in Resources */,
 				5C6E84AE28CE25F000EBB1EB /* NewsTableViewCell.xib in Resources */,
+				5CE8874B28F086CE0059431B /* FavNewsCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -933,6 +948,7 @@
 				5C4489A328CDFC96004BB02E /* UITableView+Ext.swift in Sources */,
 				5C4FA7DF28D1E6E100EA67B7 /* WebViewController.swift in Sources */,
 				5CCB3D9328F06BD2006926C8 /* FavsRouter.swift in Sources */,
+				5CE8874A28F086CE0059431B /* FavNewsCollectionViewCell.swift in Sources */,
 				5C44895E28CDF9D4004BB02E /* ListInteractor.swift in Sources */,
 				5C6E84A528CE09AA00EBB1EB /* ApplicationConstant.swift in Sources */,
 				5C4489A728CDFCCD004BB02E /* UIView+Ext.swift in Sources */,

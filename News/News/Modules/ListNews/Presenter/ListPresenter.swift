@@ -51,6 +51,10 @@ extension ListPresenter: PListViewToPresenter {
         router?.openDetailVC(news: selectedNews)
     }
     
+    func navigateToFavNews() {
+        router?.openFavNewsVC()
+    }
+    
     func viewDidLoad() {
         view?.setupViews()
         view?.setupTableView()

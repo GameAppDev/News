@@ -127,6 +127,6 @@ extension ListViewController: UISearchBarDelegate {
 extension ListViewController: PrimaryButtonCellDelegate {
     
     func primaryButtonClickAction() {
-        
+        presenter?.navigateToFavNews()
     }
 }

@@ -23,7 +23,10 @@ class BaseViewController: UIViewController {
     public func setNavigationBarItems(title: String) {
         self.navigationItem.title = title
         
-        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.navbarTitleColor]
+        let textAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.navbarTitleColor,
+            NSAttributedString.Key.font: UIFont.navbarTitleFont
+        ]
         
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes as [NSAttributedString.Key : Any]
     }

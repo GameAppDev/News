@@ -19,6 +19,8 @@ protocol PListViewToPresenter: ViewToPresenter {
     func getNews(isNewSearch: Bool)
     
     func navigateToDetail(news: NewsArticle?)
+    
+    func navigateToFavNews()
 }
 
 protocol PListPresenterToInteractor {
@@ -36,6 +38,8 @@ protocol PListInteractorToPresenter {
 protocol PListPresenterToRouter: PresenterToRouter {
    
     func openDetailVC(news: NewsArticle)
+    
+    func openFavNewsVC()
     
     func showAlert(message: String)
 }

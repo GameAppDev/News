@@ -58,7 +58,6 @@
 		5C6E84B128CE2C0600EBB1EB /* SearchBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E84AF28CE2C0600EBB1EB /* SearchBarTableViewCell.swift */; };
 		5C6E84B228CE2C0600EBB1EB /* SearchBarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C6E84B028CE2C0600EBB1EB /* SearchBarTableViewCell.xib */; };
 		5C6E84B428CE5B3700EBB1EB /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E84B328CE5B3700EBB1EB /* Date+Ext.swift */; };
-		5C6E84B628CE5DFC00EBB1EB /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 5C6E84B528CE5DFC00EBB1EB /* Fonts */; };
 		5CA8CC2928D0E5B900701A9B /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA8CC2828D0E5B900701A9B /* DetailRouter.swift */; };
 		5CA8CC2B28D0E5C300701A9B /* DetailBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA8CC2A28D0E5C300701A9B /* DetailBuilder.swift */; };
 		5CA8CC2D28D0E5CF00701A9B /* DetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA8CC2C28D0E5CF00701A9B /* DetailEntity.swift */; };
@@ -73,6 +72,18 @@
 		5CA8CC4128D0F3A900701A9B /* PrimaryButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA8CC3F28D0F3A900701A9B /* PrimaryButtonTableViewCell.swift */; };
 		5CA8CC4228D0F3A900701A9B /* PrimaryButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CA8CC4028D0F3A900701A9B /* PrimaryButtonTableViewCell.xib */; };
 		5CAA790428D4CBB700F0F1C3 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAA790328D4CBB700F0F1C3 /* CoreDataManager.swift */; };
+		5CCB3D8828F03AED006926C8 /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CCB3D8428F03AED006926C8 /* Nunito-Light.ttf */; };
+		5CCB3D8928F03AED006926C8 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CCB3D8528F03AED006926C8 /* Nunito-Bold.ttf */; };
+		5CCB3D8A28F03AED006926C8 /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CCB3D8628F03AED006926C8 /* Nunito-Medium.ttf */; };
+		5CCB3D8B28F03AED006926C8 /* Nunito-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CCB3D8728F03AED006926C8 /* Nunito-Italic.ttf */; };
+		5CCB3D9328F06BD2006926C8 /* FavsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB3D9228F06BD2006926C8 /* FavsRouter.swift */; };
+		5CCB3D9528F06BDB006926C8 /* FavsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB3D9428F06BDB006926C8 /* FavsBuilder.swift */; };
+		5CCB3DA028F06C3E006926C8 /* FavsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB3D9E28F06C3E006926C8 /* FavsViewController.swift */; };
+		5CCB3DA128F06C3E006926C8 /* FavsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CCB3D9F28F06C3E006926C8 /* FavsViewController.xib */; };
+		5CCB3DA328F06C51006926C8 /* FavsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB3DA228F06C51006926C8 /* FavsInteractor.swift */; };
+		5CCB3DA528F06C69006926C8 /* FavsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB3DA428F06C69006926C8 /* FavsPresenter.swift */; };
+		5CCB3DA728F06C72006926C8 /* FavsContractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB3DA628F06C72006926C8 /* FavsContractor.swift */; };
+		5CCB3DA928F06C99006926C8 /* FavsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB3DA828F06C99006926C8 /* FavsEntity.swift */; };
 		B16798FAF70186760A519484 /* Pods_News.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 340F56EAB471065005C26432 /* Pods_News.framework */; };
 		B7420FF6380634CEF50BFA3A /* Pods_News_NewsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202D8388D29BF201BD96209C /* Pods_News_NewsUITests.framework */; };
 /* End PBXBuildFile section */
@@ -152,7 +163,6 @@
 		5C6E84AF28CE2C0600EBB1EB /* SearchBarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarTableViewCell.swift; sourceTree = "<group>"; };
 		5C6E84B028CE2C0600EBB1EB /* SearchBarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBarTableViewCell.xib; sourceTree = "<group>"; };
 		5C6E84B328CE5B3700EBB1EB /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
-		5C6E84B528CE5DFC00EBB1EB /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		5CA8CC2828D0E5B900701A9B /* DetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
 		5CA8CC2A28D0E5C300701A9B /* DetailBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBuilder.swift; sourceTree = "<group>"; };
 		5CA8CC2C28D0E5CF00701A9B /* DetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEntity.swift; sourceTree = "<group>"; };
@@ -167,6 +177,18 @@
 		5CA8CC3F28D0F3A900701A9B /* PrimaryButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonTableViewCell.swift; sourceTree = "<group>"; };
 		5CA8CC4028D0F3A900701A9B /* PrimaryButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrimaryButtonTableViewCell.xib; sourceTree = "<group>"; };
 		5CAA790328D4CBB700F0F1C3 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		5CCB3D8428F03AED006926C8 /* Nunito-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Light.ttf"; sourceTree = "<group>"; };
+		5CCB3D8528F03AED006926C8 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
+		5CCB3D8628F03AED006926C8 /* Nunito-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Medium.ttf"; sourceTree = "<group>"; };
+		5CCB3D8728F03AED006926C8 /* Nunito-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Italic.ttf"; sourceTree = "<group>"; };
+		5CCB3D9228F06BD2006926C8 /* FavsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavsRouter.swift; sourceTree = "<group>"; };
+		5CCB3D9428F06BDB006926C8 /* FavsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavsBuilder.swift; sourceTree = "<group>"; };
+		5CCB3D9E28F06C3E006926C8 /* FavsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavsViewController.swift; sourceTree = "<group>"; };
+		5CCB3D9F28F06C3E006926C8 /* FavsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavsViewController.xib; sourceTree = "<group>"; };
+		5CCB3DA228F06C51006926C8 /* FavsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavsInteractor.swift; sourceTree = "<group>"; };
+		5CCB3DA428F06C69006926C8 /* FavsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavsPresenter.swift; sourceTree = "<group>"; };
+		5CCB3DA628F06C72006926C8 /* FavsContractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavsContractor.swift; sourceTree = "<group>"; };
+		5CCB3DA828F06C99006926C8 /* FavsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavsEntity.swift; sourceTree = "<group>"; };
 		62E866F53341FC6744337EEF /* Pods-News.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News.release.xcconfig"; path = "Target Support Files/Pods-News/Pods-News.release.xcconfig"; sourceTree = "<group>"; };
 		737D7579AEAC11FCDFAEF11A /* Pods_NewsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B22056FCEE0A41770F68724C /* Pods-News-NewsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News-NewsUITests.debug.xcconfig"; path = "Target Support Files/Pods-News-NewsUITests/Pods-News-NewsUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -400,7 +422,7 @@
 			children = (
 				5C4489AB28CDFD4C004BB02E /* Colours.swift */,
 				5C4489AD28CDFD51004BB02E /* Fonts.swift */,
-				5C6E84B528CE5DFC00EBB1EB /* Fonts */,
+				5CCB3D8328F03AD1006926C8 /* Fonts */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -685,15 +707,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CA8CC4228D0F3A900701A9B /* PrimaryButtonTableViewCell.xib in Resources */,
+				5CCB3D8A28F03AED006926C8 /* Nunito-Medium.ttf in Resources */,
 				5C44892C28CDF6D4004BB02E /* LaunchScreen.storyboard in Resources */,
 				5CA8CC3C28D0E9D000701A9B /* DetailTableViewCell.xib in Resources */,
 				5C6E84B228CE2C0600EBB1EB /* SearchBarTableViewCell.xib in Resources */,
+				5CCB3D8B28F03AED006926C8 /* Nunito-Italic.ttf in Resources */,
+				5CCB3D8828F03AED006926C8 /* Nunito-Light.ttf in Resources */,
 				5C44892928CDF6D4004BB02E /* Assets.xcassets in Resources */,
 				5CA8CC3728D0E60B00701A9B /* DetailViewController.xib in Resources */,
 				5C44895C28CDF9CA004BB02E /* ListViewController.xib in Resources */,
+				5CCB3DA128F06C3E006926C8 /* FavsViewController.xib in Resources */,
 				5C6E84A728CE0D4800EBB1EB /* Main.storyboard in Resources */,
 				5C4FA7E028D1E6E100EA67B7 /* WebViewController.xib in Resources */,
-				5C6E84B628CE5DFC00EBB1EB /* Fonts in Resources */,
+				5CCB3D8928F03AED006926C8 /* Nunito-Bold.ttf in Resources */,
 				5C6E84AE28CE25F000EBB1EB /* NewsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

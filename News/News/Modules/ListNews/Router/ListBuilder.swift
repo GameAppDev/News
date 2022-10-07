@@ -18,7 +18,6 @@ struct ListBuilder {
         let presenter = ListPresenter(view: viewController, interactor: interactor, router: router)
         
         let navigationController = UINavigationController(rootViewController: viewController)
-        router.navigationController = navigationController
         
         viewController.presenter = presenter
         

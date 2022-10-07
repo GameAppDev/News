@@ -8,16 +8,15 @@
 import Foundation
 import UIKit
 
-open class AppRouter {
-
+open class AppRouter: Routerable {
+    
     public static var shared = AppRouter()
     
-    private var navigationController: UINavigationController?
+    var navigationController: UINavigationController?
     
     public static var window: UIWindow {
         return appDelegate.window ?? UIWindow(frame: UIScreen.main.bounds)
     }
-    
     
     public func openApp() {
         let rootVC = ListRouter().returnNC()
@@ -25,7 +24,11 @@ open class AppRouter {
         setActiveNavController(with: rootVC, isFirstTime: true)
     }
     
-    public func setActiveNavController(with navCont: UINavigationController, isFirstTime: Bool = false) {
+    public func changeNavigationController(with navCont: UINavigationController) {
+        setActiveNavController(with: navCont, isFirstTime: false)
+    }
+    
+    private func setActiveNavController(with navCont: UINavigationController, isFirstTime: Bool = false) {
         navigationController?.popToRootViewController(animated: false)
         navigationController = nil
         
@@ -35,11 +38,11 @@ open class AppRouter {
         isFirstTime ? (AppRouter.window.makeKeyAndVisible()) : ()
     }
     
-    public func pushVC(_ vc: UIViewController, animated: Bool) {
+    func pushVC(_ vc: UIViewController, animated: Bool) {
         navigationController?.pushViewController(vc, animated: animated)
     }
     
-    public func presentVC(_ vc: UIViewController, animated: Bool) {
+    func presentVC(_ vc: UIViewController, animated: Bool) {
         navigationController?.present(vc, animated: animated)
     }
 }

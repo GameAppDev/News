@@ -8,9 +8,7 @@
 import Foundation
 import UIKit
 
-final class ListRouter: Routerable {
-    
-    weak var navigationController: UINavigationController?
+final class ListRouter {
     
     public func returnNC() -> UINavigationController {
         return ListBuilder.buildModule()
@@ -20,10 +18,18 @@ final class ListRouter: Routerable {
 extension ListRouter: PListPresenterToRouter {
     
     func openDetailVC(news: NewsArticle) {
-        pushVC(DetailRouter().returnVC(navigationController: (self.navigationController ?? UINavigationController()), news: news), navController: self.navigationController, animated: true)
+        let detailVC = DetailRouter().returnVC(news: news)
+        AppRouter.shared.pushVC(detailVC, animated: true)
+    }
+    
+    func openFavNewsVC() {
+        let favNewsVC = FavsRouter().returnVC()
+        AppRouter.shared.pushVC(favNewsVC, animated: true)
     }
     
     func showAlert(message: String) {
-        showAlert(from: self.navigationController, message: message)
+        if let navigationController = AppRouter.shared.navigationController {
+            showAlert(from: navigationController, message: message)
+        }
     }
 }

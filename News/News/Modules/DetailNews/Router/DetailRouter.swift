@@ -8,22 +8,23 @@
 import Foundation
 import UIKit
 
-final class DetailRouter: Routerable {
+final class DetailRouter {
     
-    weak var navigationController: UINavigationController?
-    
-    public func returnVC(navigationController: UINavigationController, news: NewsArticle) -> UIViewController {
-        return DetailBuilder.buildModule(navigationController: navigationController, news: news)
+    public func returnVC(news: NewsArticle) -> UIViewController {
+        return DetailBuilder.buildModule(news: news)
     }
 }
 
 extension DetailRouter: PDetailPresenterToRouter {
     
     func openWebVC(url: URL) {
-        pushVC(WebRouter().returnVC(navigationController: (self.navigationController ?? UINavigationController()), url: url), navController: self.navigationController, animated: true)
+        let webVC = WebRouter().returnVC(url: url)
+        AppRouter.shared.pushVC(webVC, animated: true)
     }
     
     func showAlert(message: String) {
-        showAlert(from: navigationController, message: message)
+        if let navigationController = AppRouter.shared.navigationController {
+            showAlert(from: navigationController, message: message)
+        }
     }
 }

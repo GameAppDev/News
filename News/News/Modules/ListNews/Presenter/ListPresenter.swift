@@ -36,6 +36,7 @@ extension ListPresenter: PListViewToPresenter {
     func getNews(isNewSearch: Bool) {
         guard searchedKey != "" else { return }
         isBusy = true
+        view?.setActivityIndicator(isOn: true)
         
         isNewSearch ? (resetSearchStatus()) : (page += 1)
         
@@ -69,12 +70,16 @@ extension ListPresenter: PListInteractorToPresenter {
     
     func onSuccessNews(response: [NewsArticle]) {
         isBusy = false
+        view?.setActivityIndicator(isOn: false)
+        
         news.append(contentsOf: response)
         view?.reloadTableView()
     }
     
     func onErrorNews(error: BaseError) {
         isBusy = false
+        view?.setActivityIndicator(isOn: false)
+        
         resetSearchStatus()
         view?.reloadTableView()
         router?.showAlert(message: error.errorMessage ?? "Try again".localized)

@@ -1,7 +1,7 @@
 # News
 ---
 
-![list](https://www.google.com) ![search](https://www.google.com) ![search](https://www.google.com) 
+![list](https://www.linkpicture.com/q/Simulator-Screen-Shot-iPhone-13-Pro-2022-10-09-at-13.21.23.png) ![search](https://www.linkpicture.com/q/Simulator-Screen-Shot-iPhone-13-Pro-2022-10-09-at-13.21.35.png) ![search](https://www.linkpicture.com/q/Simulator-Screen-Shot-iPhone-13-Pro-2022-10-09-at-13.21.58.png) 
 
 
 ## Overview
@@ -20,7 +20,7 @@ News is based on searching news and reading detail of it
 - Xcode: Version 13.4.1
 - Language: Swift 5.5
 - Layout: Auto Layout in xib
-- Minimum iOS Version: 12.0
+- Minimum iOS Version: 13.0
 - Dependency Manager: CocoaPods
 
 

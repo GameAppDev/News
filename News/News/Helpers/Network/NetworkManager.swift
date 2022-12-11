@@ -11,7 +11,7 @@ import Alamofire
 typealias Success<T : Codable> = (BaseResponse<T>) -> Void
 typealias Error = (BaseError) -> Void
 
-class NetworkManager: Networkable {
+final class NetworkManager: Networkable {
     
     func get<T>(path: String, _ paramaters: [String : String]?, onSuccess: @escaping (BaseResponse<T>) -> Void, onError: @escaping (BaseError) -> Void) where T : Decodable, T : Encodable {
         AF.request(networkRequestUrlWith(path), method: .get, parameters: paramaters).validate().responseDecodable(of: T.self) { (response) in
@@ -19,7 +19,27 @@ class NetworkManager: Networkable {
                 onError(BaseError(response.error))
                 return
             }
-            onSuccess(BaseResponse.init(model: model, message: "Success"))
+            onSuccess(BaseResponse.init(model: model, message: "SUCCESS"))
+        }
+    }
+    
+    func put<T>(path: String, _ paramaters: [String : String]?, onSuccess: @escaping (BaseResponse<T>) -> Void, onError: @escaping (BaseError) -> Void) where T : Decodable, T : Encodable {
+        AF.request(networkRequestUrlWith(path), method: .put, parameters: paramaters).validate().responseDecodable(of: T.self) { (response) in
+            guard let model = response.value else {
+                onError(BaseError(response.error))
+                return
+            }
+            onSuccess(BaseResponse.init(model: model, message: "SUCCESS"))
+        }
+    }
+    
+    func post<T>(path: String, _ paramaters: [String : String]?, onSuccess: @escaping (BaseResponse<T>) -> Void, onError: @escaping (BaseError) -> Void) where T : Decodable, T : Encodable {
+        AF.request(networkRequestUrlWith(path), method: .post, parameters: paramaters).validate().responseDecodable(of: T.self) { (response) in
+            guard let model = response.value else {
+                onError(BaseError(response.error))
+                return
+            }
+            onSuccess(BaseResponse.init(model: model, message: "SUCCESS"))
         }
     }
 }

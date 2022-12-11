@@ -7,25 +7,49 @@
 
 import Foundation
 
-final class ListInteractor: Interactorable {
+final class ListInteractor {
     
-    public weak var presenter: ListPresenter?
+    weak var presenter: ListPresenter?
+    private var news: [NewsArticle] = []
     
     public var apiState: ApiState = .beforeRequest
 }
 
 extension ListInteractor: PListPresenterToInteractor {
     
-    func fetchNewsData(params: NewsPost) {
+    // MARK: - Fetch News
+    func fetchData<T>(request: T) {
+        guard let request = request as? NewsPost else { return }
+        
         let endPoint: String =  "everything"
-        let requestParams: [String: String] = ["q": params.searchedKey, "page": String(params.page), "apiKey": ApplicationConstant.apiKey]
-        NetworkManager().get(path: endPoint, requestParams, onSuccess: { (response: BaseResponse<NewsResponse>) in
-            guard let data = response.model, let newsArticles = response.model?.articles else { return }
+        let requestParams: [String: String] = ["q": request.searchedKey,
+                                               "page": String(request.page),
+                                               "apiKey": ApplicationConstant.apiKey]
+        NetworkManager().get(path: endPoint, requestParams, onSuccess: { [weak self] (response: BaseResponse<NewsResponse>) in
+            guard let self = self else { return }
+            
+            guard let data = response.model,
+                  let newsArticles = response.model?.articles else { return }
+            
             debugPrint("<--- Service gets response: \(data) - count: \(newsArticles.count) - path: \(endPoint) --->")
-            self.presenter?.onSuccessNews(response: newsArticles)
-        }) { (error) in
+            self.news.append(contentsOf: newsArticles)
+            
+            self.presenter?.setData(data: self.news)
+        }) { [weak self] (error) in
+            guard let self = self else { return }
+            
             debugPrint("<---! Service gets error: \(error) - path: \(endPoint) !--->")
-            self.presenter?.onErrorNews(error: error)
+            self.presenter?.setError(error: error)
         }
+    }
+    
+    // MARK: - Get News
+    func getNews() -> [NewsArticle] {
+        return self.news
+    }
+    
+    // MARK: - Remove News
+    func removeNews() {
+        self.news.removeAll()
     }
 }

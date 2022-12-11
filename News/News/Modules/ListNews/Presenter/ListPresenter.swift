@@ -13,11 +13,9 @@ final class ListPresenter {
     private var interactor: ListInteractor?
     private var router: ListRouter?
     
-    public var news: [NewsArticle] = []
-    
-    public var isBusy: Bool = true
-    public var page: Int = 1
-    public var searchedKey: String = ""
+    private var isBusy: Bool = true
+    private var page: Int = 1
+    private var searchedKey: String = ""
     
     init(view: ListViewController, interactor: ListInteractor, router: ListRouter) {
         self.view = view
@@ -26,62 +24,74 @@ final class ListPresenter {
     }
     
     private func resetSearchStatus() {
-        news.removeAll()
+        interactor?.removeNews()
         page = 1
     }
 }
 
 extension ListPresenter: PListViewToPresenter {
     
-    func getNews(isNewSearch: Bool) {
+    // MARK: - ViewToPresenter
+    func viewDidLoad() {
+        view?.setTableView(isHidden: true)
+    }
+    
+    func viewWillAppear() {
+        view?.setNavBar(title: "NEWS".localized)
+    }
+    
+    // MARK: - TableView
+    func handleNews(isNewSearch: Bool) {
         guard searchedKey != "" else { return }
+        
         isBusy = true
         view?.setActivityIndicator(isOn: true)
         
         isNewSearch ? (resetSearchStatus()) : (page += 1)
         
-        let params: NewsPost = NewsPost(searchedKey: searchedKey, page: page)
-        interactor?.fetchNewsData(params: params)
+        let request: NewsPost = NewsPost(searchedKey: searchedKey, page: page)
+        interactor?.fetchData(request: request)
     }
     
-    func navigateToDetail(news: NewsArticle?) {
-        guard let selectedNews = news else {
-            router?.showAlert(message: "Please select a news")
+    func getNews() -> [NewsArticle] {
+        return interactor?.getNews() ?? []
+    }
+    
+    func handleDetail(index: Int) {
+        guard let news = interactor?.getNews(),
+              let selectedNews = news[safe: index] else {
+            //Alert -- "Please select a news".localized
             return
         }
-        router?.openDetailVC(news: selectedNews)
+        router?.navigateToDetail(with: selectedNews)
     }
     
-    func navigateToFavNews() {
-        router?.openFavNewsVC()
+    func handleFavNews() {
+        router?.navigateToFav()
     }
     
-    func viewDidLoad() {
-        view?.setupViews()
-        view?.setupTableView()
+    func getBusyStatus() -> Bool {
+        return self.isBusy
     }
     
-    func viewWillAppear() {
-        view?.setNavBar()
+    func setSearchedKey(text: String) {
+        self.searchedKey = text
     }
 }
 
 extension ListPresenter: PListInteractorToPresenter {
     
-    func onSuccessNews(response: [NewsArticle]) {
+    func setData<T>(data: T) {
         isBusy = false
         view?.setActivityIndicator(isOn: false)
-        
-        news.append(contentsOf: response)
-        view?.reloadTableView()
+        view?.setTableView(isHidden: false)
     }
     
-    func onErrorNews(error: BaseError) {
+    func setError(error: BaseError) {
         isBusy = false
         view?.setActivityIndicator(isOn: false)
-        
         resetSearchStatus()
-        view?.reloadTableView()
-        router?.showAlert(message: error.errorMessage ?? "Try again".localized)
+        view?.setTableView(isHidden: false)
+        //Alert -- error.errorMessage ?? "Try again".localized
     }
 }

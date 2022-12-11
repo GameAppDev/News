@@ -13,8 +13,6 @@ final class WebPresenter {
     private var interactor: WebInteractor?
     private var router: WebRouter?
     
-    public var url: URL?
-    
     init(view: WebViewController, interactor: WebInteractor, router: WebRouter) {
         self.view = view
         self.interactor = interactor
@@ -25,11 +23,14 @@ final class WebPresenter {
 extension WebPresenter: PWebViewToPresenter {
     
     func viewDidLoad() {
-        view?.setupViews()
-        view?.loadWebView(url: url)
+        view?.setWebView(isHidden: true)
+        if let url = interactor?.getNewsUrl() {
+            view?.setWebView(url: url)
+            view?.setWebView(isHidden: false)
+        }
     }
     
     func viewWillAppear() {
-        view?.setNavBar()
+        view?.setNavBar(title: "NEWS SOURCE".localized)
     }
 }

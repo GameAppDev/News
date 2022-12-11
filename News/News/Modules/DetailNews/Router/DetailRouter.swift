@@ -5,7 +5,6 @@
 //  Created by Oguzhan Yalcin on 13.09.2022.
 //
 
-import Foundation
 import UIKit
 
 final class DetailRouter {
@@ -17,14 +16,8 @@ final class DetailRouter {
 
 extension DetailRouter: PDetailPresenterToRouter {
     
-    func openWebVC(url: URL) {
+    func navigateToWebVC(with url: URL) {
         let webVC = WebRouter().returnVC(url: url)
         AppRouter.shared.pushVC(webVC, animated: true)
-    }
-    
-    func showAlert(message: String) {
-        if let navigationController = AppRouter.shared.navigationController {
-            showAlert(from: navigationController, message: message)
-        }
     }
 }

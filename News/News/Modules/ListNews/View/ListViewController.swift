@@ -7,15 +7,17 @@
 
 import UIKit
 
-class ListViewController: BaseViewController {
+final class ListViewController: BaseViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     
-    public var presenter: ListPresenter?
+    var presenter: ListPresenter?
+    var tableViewConnector: ListNewsTableView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupTableView()
         presenter?.viewDidLoad()
     }
     
@@ -24,109 +26,29 @@ class ListViewController: BaseViewController {
         
         presenter?.viewWillAppear()
     }
+    
+    private func setupTableView() {
+        tableView.backgroundColor = UIColor.clear
+        tableView.contentInset = UIEdgeInsets(top: CGFloat(0), left: CGFloat(0), bottom: CGFloat(15).ws, right: CGFloat(0))
+        tableView.dataSource = tableViewConnector
+        tableView.delegate = tableViewConnector
+        tableView.separatorStyle = .none
+        tableView.keyboardDismissMode = .onDrag
+        tableView.registerCell(NewsTableViewCell.self)
+        tableView.registerHeaderFooterView(SearchBarHeaderView.self)
+        tableView.registerHeaderFooterView(PrimaryButtonFooterView.self)
+    }
 }
 
 extension ListViewController: PListPresenterToView {
     
-    func setupViews() {
-        tableView.backgroundColor = UIColor.clear
-    }
-    
-    func setNavBar() {
-        setNavigationBarItems(title: "NEWS".localized)
-    }
-    
-    func setupTableView() {
-        tableView.contentInset = UIEdgeInsets(top: CGFloat(0), left: CGFloat(0), bottom: CGFloat(15).ws, right: CGFloat(0))
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.separatorStyle = .none
-        tableView.keyboardDismissMode = .onDrag
-        tableView.registerCell(NewsTableViewCell.self)
-        tableView.registerHeaderFooterView(SearchBarTableViewCell.self)
-        tableView.registerHeaderFooterView(PrimaryButtonTableViewCell.self)
-    }
-    
-    func reloadTableView() {
+    func setTableView(isHidden: Bool) {
+        tableView.isHidden = isHidden
         tableView.reloadData()
     }
-}
-
-extension ListViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (presenter?.news.count ?? 0)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let newsCell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.className, for: indexPath) as? NewsTableViewCell else { return UITableViewCell() }
-
-        if let presenterNews = presenter?.news {
-            if let searchedNews = presenterNews[safe: indexPath.row] {
-                newsCell.configureCell(news: searchedNews)
-            }
-        }
-
-        return newsCell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.navigateToDetail(news: presenter?.news[safe: indexPath.row])
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if !(presenter?.isBusy ?? true) && (presenter?.news.count == indexPath.row + 1) {
-            presenter?.getNews(isNewSearch: false)
-        }
-    }
-    
-    //Header
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let searchBarCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: SearchBarTableViewCell.className) as? SearchBarTableViewCell else { return UIView() }
-        
-        searchBarCell.searchBar.delegate = self
-        
-        return searchBarCell
-    }
-    
-    //Footer
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        guard let buttonCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: PrimaryButtonTableViewCell.className) as? PrimaryButtonTableViewCell else { return UIView() }
-        
-        buttonCell.configureCell(delegate: self, name: "Fav News")
-        
-        return buttonCell
-    }
-}
-
-extension ListViewController: UISearchBarDelegate {
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        debugPrint("searchText \(searchText)")
-    }
-
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        presenter?.searchedKey = searchBar.searchTextField.text ?? ""
-        presenter?.getNews(isNewSearch: true)
-    }
-}
-
-extension ListViewController: PrimaryButtonCellDelegate {
-    
-    func primaryButtonClickAction() {
-        presenter?.navigateToFavNews()
+    // MARK: PresenterToView
+    func setNavBar(title: String) {
+        setNavigationBarItems(title: title)
     }
 }

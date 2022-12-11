@@ -13,8 +13,6 @@ final class FavsPresenter {
     private var interactor: FavsInteractor?
     private var router: FavsRouter?
     
-    public var favNews: [NewsArticle] = []
-    
     init(view: FavsViewController, interactor: FavsInteractor, router: FavsRouter) {
         self.view = view
         self.interactor = interactor
@@ -24,29 +22,39 @@ final class FavsPresenter {
 
 extension FavsPresenter: PFavsViewToPresenter {
     
-    func navigateToDetail(news: NewsArticle?) {
-        guard let selectedNews = news else {
-            router?.showAlert(message: "Please select a news")
-            return
-        }
-        router?.openDetailVC(news: selectedNews)
-    }
-    
+    // MARK: - ViewToPresenter
     func viewDidLoad() {
-        view?.setupViews()
-        view?.setupCollectionView()
+        view?.setCollectionView(isHidden: true)
     }
     
     func viewWillAppear() {
-        view?.setNavBar()
-        interactor?.fetchFavNewsData()
+        view?.setNavBar(title: "FAV NEWS".localized)
+        interactor?.fetchData(request: "")
+    }
+    
+    // MARK: - CollectionView
+    func getFavNews() -> [NewsArticle] {
+        return interactor?.getFavNews() ?? []
+    }
+    
+    func handleDetail(index: Int) {
+        guard let news = interactor?.getFavNews(),
+              let selectedNews = news[safe: index] else {
+            //Alert -- "Please select a news".localized
+            return
+        }
+        router?.navigateToDetail(with: selectedNews)
     }
 }
 
 extension FavsPresenter: PFavsInteractorToPresenter {
     
-    func onSuccessFavNews(response: [NewsArticle]) {
-        self.favNews = response
-        view?.reloadCollectionView()
+    func setData<T>(data: T) {
+        view?.setCollectionView(isHidden: false)
+    }
+    
+    func setError(error: BaseError) {
+        view?.setCollectionView(isHidden: false)
+        //Alert -- error.errorMessage ?? "Try again".localized
     }
 }

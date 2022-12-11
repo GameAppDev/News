@@ -13,7 +13,6 @@ final class DetailPresenter {
     private var interactor: DetailInteractor?
     private var router: DetailRouter?
     
-    public var selectedNews: NewsArticle?
     private var isFav: Bool = false
     
     init(view: DetailViewController, interactor: DetailInteractor, router: DetailRouter) {
@@ -25,29 +24,36 @@ final class DetailPresenter {
 
 extension DetailPresenter: PDetailViewToPresenter {
     
+    // MARK: - ViewToPresenter
     func viewDidLoad() {
-        view?.setupViews()
-        view?.setupTableView()
-        if let news = selectedNews {
+        view?.setTableView(isHidden: true)
+        if let news = interactor?.getSelectedNews() {
             interactor?.getFavNewsStatus(news: news)
         }
     }
     
     func viewWillAppear() {
-        view?.setNavBar()
+        view?.setNavBar(title: "DETAIL".localized)
     }
     
-    func navigateToWebView(newsUrl: String?) {
-        guard let url = URL(string: newsUrl ?? "") else {
-            router?.showAlert(message: "The news does not has a source url")
+    // MARK: - TableView
+    func getSelectedNews() -> NewsArticle? {
+        return interactor?.selectedNews
+    }
+    
+    func handleWebView() {
+        guard let news = interactor?.getSelectedNews(),
+              let newsUrl = news.url,
+              let url = URL(string: newsUrl) else {
+            //Alert -- "The news does not has a source url".localized
             return
         }
-        router?.openWebVC(url: url)
+        router?.navigateToWebVC(with: url)
     }
     
-    func setFavNewsStatus() {
-        guard let news = selectedNews else {
-            router?.showAlert(message: "Try again")
+    func handleFavNewsStatus() {
+        guard let news = interactor?.getSelectedNews() else {
+            //Alert -- "Try again".localized
             return
         }
         interactor?.setFavNews(news: news, isFav: !isFav)
@@ -56,8 +62,16 @@ extension DetailPresenter: PDetailViewToPresenter {
 
 extension DetailPresenter: PDetailInteractorToPresenter {
     
-    func onSuccessFavStatus(isFav: Bool) {
+    func setData<T>(data: T) {
+        guard let isFav = data as? Bool else { return }
+        
         self.isFav = isFav
-        view?.setupFavButton(isFav: isFav)
+        view?.setTableView(isHidden: false)
+        view?.setFavButton(isFav: isFav)
+    }
+    
+    func setError(error: BaseError) {
+        view?.setTableView(isHidden: false)
+        //Alert -- error.errorMessage ?? "Try again".localized
     }
 }

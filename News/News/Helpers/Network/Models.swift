@@ -15,17 +15,17 @@ enum ApiState {
     case failure
 }
 
-struct BaseResponse<T : Codable> {
+struct BaseResponse<T: Codable> {
     var model: T?
     var message: String?
 }
 
-class BaseError {
+struct BaseError {
     var errorMessage: String?
     var statusCode: Int?
     var debugMessage: String?
 
-    init(_ afError : AFError?) {
+    init(_ afError: AFError?) {
         debugMessage = afError.debugDescription
         statusCode = afError?.responseCode
         errorMessage = afError?.errorDescription

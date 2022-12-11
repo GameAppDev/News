@@ -7,15 +7,17 @@
 
 import UIKit
 
-class DetailViewController: BaseViewController {
+final class DetailViewController: BaseViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     
-    public var presenter: DetailPresenter?
+    var presenter: DetailPresenter?
+    var tableViewConnector: DetailNewsTableView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupTableView()
         presenter?.viewDidLoad()
     }
     
@@ -25,77 +27,39 @@ class DetailViewController: BaseViewController {
         presenter?.viewWillAppear()
     }
     
-    @objc func favNewsClicked(sender: UIBarButtonItem) {
-        presenter?.setFavNewsStatus()
+    private func setupTableView() {
+        tableView.backgroundColor = UIColor.clear
+        tableView.contentInset = UIEdgeInsets(top: CGFloat(15).ws, left: CGFloat(0), bottom: CGFloat(15).ws, right: CGFloat(0))
+        tableView.dataSource = tableViewConnector
+        tableView.delegate = tableViewConnector
+        tableView.separatorStyle = .none
+        tableView.keyboardDismissMode = .onDrag
+        tableView.registerCell(DetailTableViewCell.self)
+        tableView.registerHeaderFooterView(PrimaryButtonFooterView.self)
+    }
+    
+    @objc private func favNewsClicked(sender: UIBarButtonItem) {
+        presenter?.handleFavNewsStatus()
     }
 }
 
 extension DetailViewController: PDetailPresenterToView {
     
-    func setupViews() {
-        tableView.backgroundColor = UIColor.clear
+    func setTableView(isHidden: Bool) {
+        tableView.isHidden = isHidden
+        tableView.reloadData()
     }
     
-    func setNavBar() {
-        setNavigationBarItems(title: "DETAIL".localized)
-    }
-    
-    func setupTableView() {
-        tableView.contentInset = UIEdgeInsets(top: CGFloat(15).ws, left: CGFloat(0), bottom: CGFloat(15).ws, right: CGFloat(0))
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.separatorStyle = .none
-        tableView.keyboardDismissMode = .onDrag
-        tableView.registerCell(DetailTableViewCell.self)
-        tableView.registerHeaderFooterView(PrimaryButtonTableViewCell.self)
-    }
-    
-    func setupFavButton(isFav: Bool) {
+    func setFavButton(isFav: Bool) {
         let imageSystemName: String = isFav ? ("heart.fill") : ("heart")
         
         let favButton = UIBarButtonItem(image: UIImage(systemName: imageSystemName), style: .done, target: self, action: #selector(favNewsClicked(sender:)))
         
         self.navigationItem.rightBarButtonItem = favButton
     }
-}
-
-extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let detailCell = tableView.dequeueReusableCell(withIdentifier: DetailTableViewCell.className, for: indexPath) as? DetailTableViewCell else { return UITableViewCell() }
-
-        if let news = presenter?.selectedNews {
-            detailCell.configureCell(news: news)
-        }
-
-        return detailCell
-    }
-    
-    //Footer
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        guard let buttonCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: PrimaryButtonTableViewCell.className) as? PrimaryButtonTableViewCell else { return UIView() }
-        
-        buttonCell.configureCell(delegate: self, name: "News Source")
-        
-        return buttonCell
-    }
-}
-
-extension DetailViewController: PrimaryButtonCellDelegate {
-    
-    func primaryButtonClickAction() {
-        presenter?.navigateToWebView(newsUrl: presenter?.selectedNews?.url)
+    // MARK: - PresenterToView
+    func setNavBar(title: String) {
+        setNavigationBarItems(title: title)
     }
 }

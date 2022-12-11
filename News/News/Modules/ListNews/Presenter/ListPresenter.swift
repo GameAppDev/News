@@ -33,7 +33,7 @@ extension ListPresenter: PListViewToPresenter {
     
     // MARK: - ViewToPresenter
     func viewDidLoad() {
-        view?.setTableView(isHidden: true)
+        view?.setTableView(isHidden: false)
     }
     
     func viewWillAppear() {

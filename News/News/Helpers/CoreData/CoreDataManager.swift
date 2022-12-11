@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class CoreDataManager {
+final class CoreDataManager {
     
     public func getFavouriteNews() -> [NewsArticle] {
         var favNews: [NewsArticle] = []

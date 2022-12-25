@@ -9,10 +9,10 @@ import Foundation
 
 final class WebInteractor {
     
-    public weak var presenter: WebPresenter?
+    weak var presenter: PWebInteractorToPresenter?
+    var url: URL?
     
-    public var url: URL?
-    public var apiState: ApiState = .beforeRequest
+    private var apiState: ApiState = .beforeRequest
 }
 
 extension WebInteractor: PWebPresenterToInteractor {

@@ -11,7 +11,7 @@ final class ListViewController: BaseViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     
-    var presenter: ListPresenter?
+    var presenter: PListViewToPresenter?
     var tableViewConnector: ListNewsTableView?
     
     override func viewDidLoad() {

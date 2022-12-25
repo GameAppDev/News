@@ -11,10 +11,7 @@ protocol PFavsPresenterToView: PresenterToView {
     func setCollectionView(isHidden: Bool)
 }
 
-protocol PFavsViewToPresenter: ViewToPresenter {
-    func getFavNews() -> [NewsArticle]
-    func handleDetail(index: Int)
-}
+protocol PFavsViewToPresenter: ViewToPresenter { }
 
 protocol PFavsPresenterToInteractor: PresenterToInteractor {
     func getFavNews() -> [NewsArticle]
@@ -24,4 +21,9 @@ protocol PFavsInteractorToPresenter: InteractorToPresenter { }
 
 protocol PFavsPresenterToRouter: PresenterToRouter {
     func navigateToDetail(with news: NewsArticle)
+}
+
+protocol PFavsConnectorToPresenter: ConnectorToPresenter {
+    func getFavNews() -> [NewsArticle]
+    func handleDetail(index: Int)
 }

@@ -9,9 +9,9 @@ import UIKit
 
 final class ListNewsTableView: NSObject {
     
-    private let presenter: ListPresenter?
+    private let presenter: PListConnectorToPresenter?
     
-    init(presenter: ListPresenter) {
+    init(presenter: PListConnectorToPresenter) {
         self.presenter = presenter
     }
 }

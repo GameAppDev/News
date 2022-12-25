@@ -9,11 +9,13 @@ import Foundation
 
 final class FavsPresenter {
     
-    private weak var view: FavsViewController?
-    private var interactor: FavsInteractor?
-    private var router: FavsRouter?
+    private weak var view: PFavsPresenterToView?
+    private var interactor: PFavsPresenterToInteractor?
+    private var router: PFavsPresenterToRouter?
     
-    init(view: FavsViewController, interactor: FavsInteractor, router: FavsRouter) {
+    init(view: PFavsPresenterToView,
+         interactor: PFavsPresenterToInteractor,
+         router: PFavsPresenterToRouter) {
         self.view = view
         self.interactor = interactor
         self.router = router
@@ -28,22 +30,8 @@ extension FavsPresenter: PFavsViewToPresenter {
     }
     
     func viewWillAppear() {
-        view?.setNavBar(title: "FAV NEWS".localized)
+        view?.setNavBar?(title: "FAV NEWS".localized)
         interactor?.fetchData(request: "")
-    }
-    
-    // MARK: - CollectionView
-    func getFavNews() -> [NewsArticle] {
-        return interactor?.getFavNews() ?? []
-    }
-    
-    func handleDetail(index: Int) {
-        guard let news = interactor?.getFavNews(),
-              let selectedNews = news[safe: index] else {
-            //Alert -- "Please select a news".localized
-            return
-        }
-        router?.navigateToDetail(with: selectedNews)
     }
 }
 
@@ -56,5 +44,21 @@ extension FavsPresenter: PFavsInteractorToPresenter {
     func setError(error: BaseError) {
         view?.setCollectionView(isHidden: false)
         //Alert -- error.errorMessage ?? "Try again".localized
+    }
+}
+
+extension FavsPresenter: PFavsConnectorToPresenter {
+    
+    func getFavNews() -> [NewsArticle] {
+        return interactor?.getFavNews() ?? []
+    }
+    
+    func handleDetail(index: Int) {
+        guard let news = interactor?.getFavNews(),
+              let selectedNews = news[safe: index] else {
+            //Alert -- "Please select a news".localized
+            return
+        }
+        router?.navigateToDetail(with: selectedNews)
     }
 }

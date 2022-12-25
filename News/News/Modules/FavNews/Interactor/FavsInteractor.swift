@@ -9,19 +9,18 @@ import Foundation
 
 final class FavsInteractor {
     
-    weak var presenter: FavsPresenter?
+    weak var presenter: PFavsInteractorToPresenter?
     
     private var favNews: [NewsArticle] = []
-    public var apiState: ApiState = .beforeRequest
+    private var apiState: ApiState = .beforeRequest
 }
 
 extension FavsInteractor: PFavsPresenterToInteractor {
     
     // MARK: - Fetch
     func fetchData<T>(request: T) {
-        let favNews = CoreDataManager().getFavouriteNews()
-        self.favNews = favNews
-        presenter?.setData(data: favNews)
+        self.favNews = CoreDataManager().getFavouriteNews()
+        presenter?.setData(data: self.favNews)
     }
     
     // MARK: - Get

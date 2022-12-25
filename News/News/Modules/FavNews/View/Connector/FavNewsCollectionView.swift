@@ -9,9 +9,9 @@ import UIKit
 
 final class FavNewsCollectionView: NSObject {
     
-    private let presenter: FavsPresenter?
+    private let presenter: PFavsConnectorToPresenter?
     
-    init(presenter: FavsPresenter) {
+    init(presenter: PFavsConnectorToPresenter) {
         self.presenter = presenter
     }
 }

@@ -9,15 +9,17 @@ import Foundation
 
 final class ListPresenter {
     
-    private weak var view: ListViewController?
-    private var interactor: ListInteractor?
-    private var router: ListRouter?
+    private weak var view: PListPresenterToView?
+    private var interactor: PListPresenterToInteractor?
+    private var router: PListPresenterToRouter?
     
     private var isBusy: Bool = true
     private var page: Int = 1
     private var searchedKey: String = ""
     
-    init(view: ListViewController, interactor: ListInteractor, router: ListRouter) {
+    init(view: PListPresenterToView,
+         interactor: PListPresenterToInteractor,
+         router: PListPresenterToRouter) {
         self.view = view
         self.interactor = interactor
         self.router = router
@@ -37,15 +39,34 @@ extension ListPresenter: PListViewToPresenter {
     }
     
     func viewWillAppear() {
-        view?.setNavBar(title: "NEWS".localized)
+        view?.setNavBar?(title: "NEWS".localized)
+    }
+}
+
+extension ListPresenter: PListInteractorToPresenter {
+    
+    func setData<T>(data: T) {
+        isBusy = false
+        view?.hideIndicatorView()
+        view?.setTableView(isHidden: false)
     }
     
-    // MARK: - TableView
+    func setError(error: BaseError) {
+        isBusy = false
+        view?.hideIndicatorView()
+        resetSearchStatus()
+        view?.setTableView(isHidden: false)
+        //Alert -- error.errorMessage ?? "Try again".localized
+    }
+}
+
+extension ListPresenter: PListConnectorToPresenter {
+    
     func handleNews(isNewSearch: Bool) {
         guard searchedKey != "" else { return }
         
         isBusy = true
-        view?.setActivityIndicator(isOn: true)
+        view?.showIndicatorView()
         
         isNewSearch ? (resetSearchStatus()) : (page += 1)
         
@@ -76,22 +97,5 @@ extension ListPresenter: PListViewToPresenter {
     
     func setSearchedKey(text: String) {
         self.searchedKey = text
-    }
-}
-
-extension ListPresenter: PListInteractorToPresenter {
-    
-    func setData<T>(data: T) {
-        isBusy = false
-        view?.setActivityIndicator(isOn: false)
-        view?.setTableView(isHidden: false)
-    }
-    
-    func setError(error: BaseError) {
-        isBusy = false
-        view?.setActivityIndicator(isOn: false)
-        resetSearchStatus()
-        view?.setTableView(isHidden: false)
-        //Alert -- error.errorMessage ?? "Try again".localized
     }
 }

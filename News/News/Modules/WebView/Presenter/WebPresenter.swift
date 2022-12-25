@@ -9,11 +9,13 @@ import Foundation
 
 final class WebPresenter {
     
-    private weak var view: WebViewController?
-    private var interactor: WebInteractor?
-    private var router: WebRouter?
+    private weak var view: PWebPresenterToView?
+    private var interactor: PWebPresenterToInteractor?
+    private var router: PWebPresenterToRouter?
     
-    init(view: WebViewController, interactor: WebInteractor, router: WebRouter) {
+    init(view: PWebPresenterToView,
+         interactor: PWebPresenterToInteractor,
+         router: PWebPresenterToRouter) {
         self.view = view
         self.interactor = interactor
         self.router = router
@@ -22,6 +24,7 @@ final class WebPresenter {
 
 extension WebPresenter: PWebViewToPresenter {
     
+    // MARK: - ViewToPresenter
     func viewDidLoad() {
         view?.setWebView(isHidden: true)
         if let url = interactor?.getNewsUrl() {
@@ -31,6 +34,6 @@ extension WebPresenter: PWebViewToPresenter {
     }
     
     func viewWillAppear() {
-        view?.setNavBar(title: "NEWS SOURCE".localized)
+        view?.setNavBar?(title: "NEWS SOURCE".localized)
     }
 }

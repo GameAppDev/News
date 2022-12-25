@@ -9,10 +9,10 @@ import Foundation
 
 final class DetailInteractor {
     
-    weak var presenter: DetailPresenter?
+    weak var presenter: PDetailInteractorToPresenter?
     var selectedNews: NewsArticle?
     
-    public var apiState: ApiState = .beforeRequest
+    private var apiState: ApiState = .beforeRequest
 }
 
 extension DetailInteractor: PDetailPresenterToInteractor {

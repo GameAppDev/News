@@ -9,9 +9,9 @@ import UIKit
 
 final class DetailNewsTableView: NSObject {
     
-    private let presenter: DetailPresenter?
+    private let presenter: PDetailConnectorToPresenter?
     
-    init(presenter: DetailPresenter) {
+    init(presenter: PDetailConnectorToPresenter) {
         self.presenter = presenter
     }
 }

@@ -9,10 +9,10 @@ import Foundation
 
 final class ListInteractor {
     
-    weak var presenter: ListPresenter?
+    weak var presenter: PListInteractorToPresenter?
     private var news: [NewsArticle] = []
     
-    public var apiState: ApiState = .beforeRequest
+    private var apiState: ApiState = .beforeRequest
 }
 
 extension ListInteractor: PListPresenterToInteractor {

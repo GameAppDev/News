@@ -9,13 +9,15 @@ import Foundation
 
 final class DetailPresenter {
     
-    private weak var view: DetailViewController?
-    private var interactor: DetailInteractor?
-    private var router: DetailRouter?
+    private weak var view: PDetailPresenterToView?
+    private var interactor: PDetailPresenterToInteractor?
+    private var router: PDetailPresenterToRouter?
     
     private var isFav: Bool = false
     
-    init(view: DetailViewController, interactor: DetailInteractor, router: DetailRouter) {
+    init(view: PDetailPresenterToView,
+         interactor: PDetailPresenterToInteractor,
+         router: PDetailPresenterToRouter) {
         self.view = view
         self.interactor = interactor
         self.router = router
@@ -23,6 +25,14 @@ final class DetailPresenter {
 }
 
 extension DetailPresenter: PDetailViewToPresenter {
+    
+    func handleFavNewsStatus() {
+        guard let news = interactor?.getSelectedNews() else {
+            //Alert -- "Try again".localized
+            return
+        }
+        interactor?.setFavNews(news: news, isFav: !isFav)
+    }
     
     // MARK: - ViewToPresenter
     func viewDidLoad() {
@@ -33,30 +43,7 @@ extension DetailPresenter: PDetailViewToPresenter {
     }
     
     func viewWillAppear() {
-        view?.setNavBar(title: "DETAIL".localized)
-    }
-    
-    // MARK: - TableView
-    func getSelectedNews() -> NewsArticle? {
-        return interactor?.selectedNews
-    }
-    
-    func handleWebView() {
-        guard let news = interactor?.getSelectedNews(),
-              let newsUrl = news.url,
-              let url = URL(string: newsUrl) else {
-            //Alert -- "The news does not has a source url".localized
-            return
-        }
-        router?.navigateToWebVC(with: url)
-    }
-    
-    func handleFavNewsStatus() {
-        guard let news = interactor?.getSelectedNews() else {
-            //Alert -- "Try again".localized
-            return
-        }
-        interactor?.setFavNews(news: news, isFav: !isFav)
+        view?.setNavBar?(title: "DETAIL".localized)
     }
 }
 
@@ -73,5 +60,22 @@ extension DetailPresenter: PDetailInteractorToPresenter {
     func setError(error: BaseError) {
         view?.setTableView(isHidden: false)
         //Alert -- error.errorMessage ?? "Try again".localized
+    }
+}
+
+extension DetailPresenter: PDetailConnectorToPresenter {
+    
+    func getSelectedNews() -> NewsArticle? {
+        return interactor?.getSelectedNews()
+    }
+    
+    func handleWebView() {
+        guard let news = interactor?.getSelectedNews(),
+              let newsUrl = news.url,
+              let url = URL(string: newsUrl) else {
+            //Alert -- "The news does not has a source url".localized
+            return
+        }
+        router?.navigateToWebVC(with: url)
     }
 }

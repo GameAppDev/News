@@ -11,7 +11,7 @@ final class DetailViewController: BaseViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     
-    var presenter: DetailPresenter?
+    var presenter: PDetailViewToPresenter?
     var tableViewConnector: DetailNewsTableView?
     
     override func viewDidLoad() {

@@ -13,8 +13,6 @@ protocol PDetailPresenterToView: PresenterToView {
 }
 
 protocol PDetailViewToPresenter: ViewToPresenter {
-    func getSelectedNews() -> NewsArticle?
-    func handleWebView()
     func handleFavNewsStatus()
 }
 
@@ -28,4 +26,9 @@ protocol PDetailInteractorToPresenter: InteractorToPresenter { }
 
 protocol PDetailPresenterToRouter: PresenterToRouter {
     func navigateToWebVC(with url: URL)
+}
+
+protocol PDetailConnectorToPresenter: ConnectorToPresenter {
+    func getSelectedNews() -> NewsArticle?
+    func handleWebView()
 }

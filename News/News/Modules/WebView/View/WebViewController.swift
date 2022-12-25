@@ -12,7 +12,7 @@ final class WebViewController: BaseViewController {
 
     @IBOutlet private weak var webView: WKWebView!
     
-    public var presenter: WebPresenter?
+    public var presenter: PWebViewToPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -11,7 +11,7 @@ final class FavsViewController: BaseViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
     
-    public var presenter: FavsPresenter?
+    var presenter: PFavsViewToPresenter?
     var collectionViewConnector: FavNewsCollectionView?
     
     override func viewDidLoad() {

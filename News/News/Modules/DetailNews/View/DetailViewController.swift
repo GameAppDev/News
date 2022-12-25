@@ -29,7 +29,10 @@ final class DetailViewController: BaseViewController {
     
     private func setupTableView() {
         tableView.backgroundColor = UIColor.clear
-        tableView.contentInset = UIEdgeInsets(top: CGFloat(0), left: CGFloat(0), bottom: CGFloat(15).ws, right: CGFloat(0))
+        tableView.contentInset = UIEdgeInsets(top: CGFloat(0),
+                                              left: CGFloat(0),
+                                              bottom: CGFloat(15).ws,
+                                              right: CGFloat(0))
         tableView.dataSource = tableViewConnector
         tableView.delegate = tableViewConnector
         tableView.separatorStyle = .none
@@ -53,7 +56,10 @@ extension DetailViewController: PDetailPresenterToView {
     func setFavButton(isFav: Bool) {
         let imageSystemName: String = isFav ? ("heart.fill") : ("heart")
         
-        let favButton = UIBarButtonItem(image: UIImage(systemName: imageSystemName), style: .done, target: self, action: #selector(favNewsClicked(sender:)))
+        let favButton = UIBarButtonItem(image: UIImage(systemName: imageSystemName),
+                                        style: .done,
+                                        target: self,
+                                        action: #selector(favNewsClicked(sender:)))
         
         self.navigationItem.rightBarButtonItem = favButton
     }

@@ -13,7 +13,9 @@ struct ListBuilder {
         let viewController = ListViewController()
         let interactor = ListInteractor()
         let router = ListRouter()
-        let presenter = ListPresenter(view: viewController, interactor: interactor, router: router)
+        let presenter = ListPresenter(view: viewController,
+                                      interactor: interactor,
+                                      router: router)
         let tableViewConnector = ListNewsTableView(presenter: presenter)
         
         viewController.presenter = presenter

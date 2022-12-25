@@ -13,7 +13,9 @@ struct DetailBuilder {
         let viewController = DetailViewController()
         let interactor = DetailInteractor()
         let router = DetailRouter()
-        let presenter = DetailPresenter(view: viewController, interactor: interactor, router: router)
+        let presenter = DetailPresenter(view: viewController,
+                                        interactor: interactor,
+                                        router: router)
         let tableViewConnector = DetailNewsTableView(presenter: presenter)
         
         viewController.presenter = presenter

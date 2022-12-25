@@ -13,7 +13,9 @@ struct WebBuilder {
         let viewController = WebViewController()
         let interactor = WebInteractor()
         let router = WebRouter()
-        let presenter = WebPresenter(view: viewController, interactor: interactor, router: router)
+        let presenter = WebPresenter(view: viewController,
+                                     interactor: interactor,
+                                     router: router)
         
         viewController.presenter = presenter
         

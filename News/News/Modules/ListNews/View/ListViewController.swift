@@ -29,7 +29,10 @@ final class ListViewController: BaseViewController {
     
     private func setupTableView() {
         tableView.backgroundColor = UIColor.clear
-        tableView.contentInset = UIEdgeInsets(top: CGFloat(0), left: CGFloat(0), bottom: CGFloat(15).ws, right: CGFloat(0))
+        tableView.contentInset = UIEdgeInsets(top: CGFloat(0),
+                                              left: CGFloat(0),
+                                              bottom: CGFloat(15).ws,
+                                              right: CGFloat(0))
         tableView.dataSource = tableViewConnector
         tableView.delegate = tableViewConnector
         tableView.separatorStyle = .none

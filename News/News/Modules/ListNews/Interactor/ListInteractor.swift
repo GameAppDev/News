@@ -19,7 +19,7 @@ extension ListInteractor: PListPresenterToInteractor {
     
     // MARK: - Fetch News
     func fetchData<T>(request: T) {
-        guard let request = request as? NewsPost else { return }
+        guard let request = request as? NewsRequest else { return }
         
         let endPoint: String =  "everything"
         let requestParams: [String: String] = ["q": request.searchedKey,

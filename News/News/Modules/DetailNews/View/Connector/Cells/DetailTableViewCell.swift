@@ -39,7 +39,8 @@ final class DetailTableViewCell: UITableViewCell {
     }
     
     public func configureCell(news: NewsArticle) {
-        newsImageView.downloadImage(imageKey: news.urlToImage ?? "imageKey", defaultImage: "DefaultNewsIcon")
+        newsImageView.downloadImage(imageKey: news.urlToImage ?? "imageKey",
+                                    defaultImage: "DefaultNewsIcon")
         
         titleLabel.text = news.title ?? "Title"
         detailLabel.text = news.description ?? "Description"

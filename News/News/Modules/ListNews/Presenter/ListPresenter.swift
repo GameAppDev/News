@@ -49,7 +49,7 @@ extension ListPresenter: PListViewToPresenter {
         
         isNewSearch ? (resetSearchStatus()) : (page += 1)
         
-        let request: NewsPost = NewsPost(searchedKey: searchedKey, page: page)
+        let request: NewsRequest = NewsRequest(searchedKey: searchedKey, page: page)
         interactor?.fetchData(request: request)
     }
     

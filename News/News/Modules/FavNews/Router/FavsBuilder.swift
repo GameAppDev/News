@@ -13,7 +13,9 @@ struct FavsBuilder {
         let viewController = FavsViewController()
         let interactor = FavsInteractor()
         let router = FavsRouter()
-        let presenter = FavsPresenter(view: viewController, interactor: interactor, router: router)
+        let presenter = FavsPresenter(view: viewController,
+                                      interactor: interactor,
+                                      router: router)
         let collectionViewConnector = FavNewsCollectionView(presenter: presenter)
         
         viewController.presenter = presenter

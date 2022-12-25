@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct NewsPost: Codable {
+struct NewsRequest: Codable {
     let searchedKey: String
     let page: Int
 }
 
 struct NewsResponse: Codable {
-    let status: String!
+    let status: String?
     let totalResults: Int?
     let articles: [NewsArticle]?
     let message: String?

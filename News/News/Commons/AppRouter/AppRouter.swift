@@ -52,4 +52,10 @@ open class AppRouter: Routerable {
     func presentVC(_ vc: UIViewController, animated: Bool) {
         navigationController?.present(vc, animated: animated)
     }
+    
+    func showAlert(message: String) {
+        let alertController = UIAlertController(title: "Warning".localized, message: message, preferredStyle: .alert)
+        alertController.addAction(.init(title: "OK".localized, style: .cancel, handler: nil))
+        navigationController?.present(alertController, animated: true, completion: nil)
+    }
 }

@@ -7,34 +7,49 @@
 
 import UIKit
 
+// MARK: - PresenterToView
 @objc protocol PresenterToView: AnyObject {
+    func showIndicatorView()
+    func hideIndicatorView()
+    func showAlert(message: String)
     @objc optional func setNavBar(title: String)
 }
 
+extension UIViewController: PresenterToView {
+    
+    func showIndicatorView() {
+        ActivityIndicatorManager.shared.showIndicator()
+    }
+    
+    func hideIndicatorView() {
+        ActivityIndicatorManager.shared.hideIndicator()
+    }
+    
+    func showAlert(message: String) {
+        AppRouter.shared.showAlert(message: message)
+    }
+}
+
+// MARK: - ViewToPresenter
 @objc protocol ViewToPresenter: AnyObject {
-    @objc optional func viewDidLoad()
-    @objc optional func viewWillAppear()
+    func viewDidLoad()
+    func viewWillAppear()
     @objc optional func viewWillDisappear()
 }
 
+// MARK: - PresenterToInteractor
 protocol PresenterToInteractor: AnyObject {
     func fetchData<T>(request: T)
 }
 
+// MARK: - InteractorToPresenter
 protocol InteractorToPresenter: AnyObject {
     func setData<T>(data: T)
     func setError(error: BaseError)
 }
 
+// MARK: - PresenterToRouter
 @objc protocol PresenterToRouter: AnyObject { }
 
-/*
-extension PresenterToRouter {
-    
-    func showAlert(from navController: UINavigationController?, title: String? = "", message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(.init(title: "OK", style: .cancel, handler: nil))
-        navController?.present(alert, animated: true, completion: nil)
-    }
-}
-*/
+// MARK: - ConnectorToPresenter
+@objc protocol ConnectorToPresenter: AnyObject { }

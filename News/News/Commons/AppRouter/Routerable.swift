@@ -10,4 +10,5 @@ import UIKit
 protocol Routerable: AnyObject {
     func pushVC(_ vc:UIViewController, animated: Bool)
     func presentVC(_ vc:UIViewController, animated: Bool)
+    func showAlert(message: String)
 }

@@ -43,7 +43,7 @@ extension FavsPresenter: PFavsInteractorToPresenter {
     
     func setError(error: BaseError) {
         view?.setCollectionView(isHidden: false)
-        //Alert -- error.errorMessage ?? "Try again".localized
+        view?.showAlert(message: error.errorMessage ?? "Try again".localized)
     }
 }
 
@@ -56,7 +56,7 @@ extension FavsPresenter: PFavsConnectorToPresenter {
     func handleDetail(index: Int) {
         guard let news = interactor?.getFavNews(),
               let selectedNews = news[safe: index] else {
-            //Alert -- "Please select a news".localized
+            view?.showAlert(message: "Please select a news".localized)
             return
         }
         router?.navigateToDetail(with: selectedNews)

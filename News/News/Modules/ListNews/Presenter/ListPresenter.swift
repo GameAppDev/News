@@ -56,7 +56,7 @@ extension ListPresenter: PListInteractorToPresenter {
         view?.hideIndicatorView()
         resetSearchStatus()
         view?.setTableView(isHidden: false)
-        //Alert -- error.errorMessage ?? "Try again".localized
+        view?.showAlert(message: error.errorMessage ?? "Try again".localized)
     }
 }
 
@@ -81,7 +81,7 @@ extension ListPresenter: PListConnectorToPresenter {
     func handleDetail(index: Int) {
         guard let news = interactor?.getNews(),
               let selectedNews = news[safe: index] else {
-            //Alert -- "Please select a news".localized
+            view?.showAlert(message: "Please select a news".localized)
             return
         }
         router?.navigateToDetail(with: selectedNews)

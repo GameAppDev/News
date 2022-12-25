@@ -28,7 +28,7 @@ extension DetailPresenter: PDetailViewToPresenter {
     
     func handleFavNewsStatus() {
         guard let news = interactor?.getSelectedNews() else {
-            //Alert -- "Try again".localized
+            view?.showAlert(message: "Try again".localized)
             return
         }
         interactor?.setFavNews(news: news, isFav: !isFav)
@@ -59,7 +59,7 @@ extension DetailPresenter: PDetailInteractorToPresenter {
     
     func setError(error: BaseError) {
         view?.setTableView(isHidden: false)
-        //Alert -- error.errorMessage ?? "Try again".localized
+        view?.showAlert(message: error.errorMessage ?? "Try again".localized)
     }
 }
 
@@ -73,7 +73,7 @@ extension DetailPresenter: PDetailConnectorToPresenter {
         guard let news = interactor?.getSelectedNews(),
               let newsUrl = news.url,
               let url = URL(string: newsUrl) else {
-            //Alert -- "The news does not has a source url".localized
+            view?.showAlert(message: "The news does not has a source url".localized)
             return
         }
         router?.navigateToWebVC(with: url)

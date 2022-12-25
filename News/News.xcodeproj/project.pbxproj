@@ -54,8 +54,6 @@
 		5C6E84AD28CE25F000EBB1EB /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E84AB28CE25EF00EBB1EB /* NewsTableViewCell.swift */; };
 		5C6E84AE28CE25F000EBB1EB /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C6E84AC28CE25F000EBB1EB /* NewsTableViewCell.xib */; };
 		5C6E84B428CE5B3700EBB1EB /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E84B328CE5B3700EBB1EB /* Date+Ext.swift */; };
-		5C7F64F428F1BE3400B09382 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7F64F228F1BE3400B09382 /* ActivityView.swift */; };
-		5C7F64F528F1BE3400B09382 /* ActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C7F64F328F1BE3400B09382 /* ActivityView.xib */; };
 		5CA8CC2928D0E5B900701A9B /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA8CC2828D0E5B900701A9B /* DetailRouter.swift */; };
 		5CA8CC2B28D0E5C300701A9B /* DetailBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA8CC2A28D0E5C300701A9B /* DetailBuilder.swift */; };
 		5CA8CC2D28D0E5CF00701A9B /* DetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA8CC2C28D0E5CF00701A9B /* DetailEntity.swift */; };
@@ -169,8 +167,6 @@
 		5C6E84AB28CE25EF00EBB1EB /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		5C6E84AC28CE25F000EBB1EB /* NewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
 		5C6E84B328CE5B3700EBB1EB /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
-		5C7F64F228F1BE3400B09382 /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
-		5C7F64F328F1BE3400B09382 /* ActivityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityView.xib; sourceTree = "<group>"; };
 		5CA8CC2828D0E5B900701A9B /* DetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
 		5CA8CC2A28D0E5C300701A9B /* DetailBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBuilder.swift; sourceTree = "<group>"; };
 		5CA8CC2C28D0E5CF00701A9B /* DetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEntity.swift; sourceTree = "<group>"; };
@@ -513,14 +509,6 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
-		5C7F64F128F1BDD000B09382 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				924180CC2945FEEE007A0EDB /* ActivityView */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		5CA8CC2228D0E52300701A9B /* DetailNews */ = {
 			isa = PBXGroup;
 			children = (
@@ -665,7 +653,6 @@
 			children = (
 				5C44896C28CDFADB004BB02E /* Base */,
 				924180CB2945FC21007A0EDB /* AppRouter */,
-				5C7F64F128F1BDD000B09382 /* Views */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -677,15 +664,6 @@
 				5C44897A28CDFB89004BB02E /* Routerable.swift */,
 			);
 			path = AppRouter;
-			sourceTree = "<group>";
-		};
-		924180CC2945FEEE007A0EDB /* ActivityView */ = {
-			isa = PBXGroup;
-			children = (
-				5C7F64F228F1BE3400B09382 /* ActivityView.swift */,
-				5C7F64F328F1BE3400B09382 /* ActivityView.xib */,
-			);
-			path = ActivityView;
 			sourceTree = "<group>";
 		};
 		924180CE29460288007A0EDB /* BaseProtocols */ = {
@@ -949,7 +927,6 @@
 				5CA8CC3728D0E60B00701A9B /* DetailViewController.xib in Resources */,
 				5C44895C28CDF9CA004BB02E /* ListViewController.xib in Resources */,
 				5CCB3DA128F06C3E006926C8 /* FavsViewController.xib in Resources */,
-				5C7F64F528F1BE3400B09382 /* ActivityView.xib in Resources */,
 				9267BE9929588FBC00E347E3 /* ActivityIndicator.xib in Resources */,
 				5C6E84A728CE0D4800EBB1EB /* Main.storyboard in Resources */,
 				5C4FA7E028D1E6E100EA67B7 /* WebViewController.xib in Resources */,
@@ -1087,7 +1064,6 @@
 			files = (
 				5C4489AE28CDFD51004BB02E /* Fonts.swift in Sources */,
 				924180DE29468ABE007A0EDB /* PrimaryButtonFooterView.swift in Sources */,
-				5C7F64F428F1BE3400B09382 /* ActivityView.swift in Sources */,
 				5C44897428CDFB67004BB02E /* NetworkManager.swift in Sources */,
 				5C44897528CDFB67004BB02E /* Models.swift in Sources */,
 				5C44896428CDF9F0004BB02E /* ListRouter.swift in Sources */,

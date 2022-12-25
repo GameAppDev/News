@@ -8,6 +8,7 @@ target 'News' do
   # Pods for News
   pod 'Alamofire'
   pod 'Kingfisher', '~> 6.0'
+  pod 'lottie-ios'
 
   target 'NewsTests' do
     inherit! :search_paths

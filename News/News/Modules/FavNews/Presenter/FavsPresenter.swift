@@ -9,13 +9,13 @@ import Foundation
 
 final class FavsPresenter {
     
-    private weak var view: FavsViewController?
-    private var interactor: FavsInteractor?
-    private var router: FavsRouter?
+    private weak var view: PFavsPresenterToView?
+    private var interactor: PFavsPresenterToInteractor?
+    private var router: PFavsPresenterToRouter?
     
-    public var favNews: [NewsArticle] = []
-    
-    init(view: FavsViewController, interactor: FavsInteractor, router: FavsRouter) {
+    init(view: PFavsPresenterToView,
+         interactor: PFavsPresenterToInteractor,
+         router: PFavsPresenterToRouter) {
         self.view = view
         self.interactor = interactor
         self.router = router
@@ -24,29 +24,41 @@ final class FavsPresenter {
 
 extension FavsPresenter: PFavsViewToPresenter {
     
-    func navigateToDetail(news: NewsArticle?) {
-        guard let selectedNews = news else {
-            router?.showAlert(message: "Please select a news")
-            return
-        }
-        router?.openDetailVC(news: selectedNews)
-    }
-    
+    // MARK: - ViewToPresenter
     func viewDidLoad() {
-        view?.setupViews()
-        view?.setupCollectionView()
+        view?.setCollectionView(isHidden: true)
     }
     
     func viewWillAppear() {
-        view?.setNavBar()
-        interactor?.fetchFavNewsData()
+        view?.setNavBar?(title: "FAV NEWS".localized)
+        interactor?.fetchData(request: "")
     }
 }
 
 extension FavsPresenter: PFavsInteractorToPresenter {
     
-    func onSuccessFavNews(response: [NewsArticle]) {
-        self.favNews = response
-        view?.reloadCollectionView()
+    func setData<T>(data: T) {
+        view?.setCollectionView(isHidden: false)
+    }
+    
+    func setError(error: BaseError) {
+        view?.setCollectionView(isHidden: false)
+        view?.showAlert(message: error.errorMessage ?? "Try again".localized)
+    }
+}
+
+extension FavsPresenter: PFavsConnectorToPresenter {
+    
+    func getFavNews() -> [NewsArticle] {
+        return interactor?.getFavNews() ?? []
+    }
+    
+    func handleDetail(index: Int) {
+        guard let news = interactor?.getFavNews(),
+              let selectedNews = news[safe: index] else {
+            view?.showAlert(message: "Please select a news".localized)
+            return
+        }
+        router?.navigateToDetail(with: selectedNews)
     }
 }

@@ -8,31 +8,31 @@
 import Foundation
 import CoreData
 
-class CoreDataManager {
+final class CoreDataManager {
     
     public func getFavouriteNews() -> [NewsArticle] {
-        var news: [NewsArticle] = []
+        var favNews: [NewsArticle] = []
         
         do {
-            let fetchResults = try managedContext.fetch(fetchRequest)
-            
-            for result in fetchResults as! [NSManagedObject] {
-                let favNews = NewsArticle(
-                    source: NewsSource(name: result.value(forKey: "name") as? String),
-                    author: result.value(forKey: "author") as? String,
-                    title: result.value(forKey: "title") as? String,
-                    description: result.value(forKey: "desc") as? String,
-                    url: result.value(forKey: "url") as? String,
-                    urlToImage: result.value(forKey: "urlToImage") as? String,
-                    publishedAt: result.value(forKey: "publishedAt") as? String,
-                    content: result.value(forKey: "content") as? String
-                )
-                news.append(favNews)
+            if let fetchResults = try managedContext.fetch(fetchRequest) as? [NSManagedObject] {
+                for result in fetchResults {
+                    let news = NewsArticle(
+                        source: NewsSource(name: result.value(forKey: "name") as? String),
+                        author: result.value(forKey: "author") as? String,
+                        title: result.value(forKey: "title") as? String,
+                        description: result.value(forKey: "desc") as? String,
+                        url: result.value(forKey: "url") as? String,
+                        urlToImage: result.value(forKey: "urlToImage") as? String,
+                        publishedAt: result.value(forKey: "publishedAt") as? String,
+                        content: result.value(forKey: "content") as? String
+                    )
+                    favNews.append(news)
+                }
             }
         }
-        catch let error { debugPrint(error.localizedDescription) }
+        catch let error { debugPrint("<---! Get Fav News Error: \(error.localizedDescription) !--->") }
         
-        return news
+        return favNews
     }
     
     public func getSelectedNewsStatus(_ news: NewsArticle) -> Bool {
@@ -45,10 +45,10 @@ class CoreDataManager {
     }
     
     public func setFavouriteNews(with news: NewsArticle, isFav: Bool) {
-        isFav ? (addNews(news)) : (removeNews(news))
+        isFav ? (addNewsToFav(news)) : (removeNewsFromFav(news))
     }
     
-    private func addNews(_ news: NewsArticle) {
+    private func addNewsToFav(_ news: NewsArticle) {
         guard let entity = NSEntityDescription.entity(forEntityName: "FavNews", in: managedContext) else { return }
         
         let item = NSManagedObject(entity: entity, insertInto: managedContext)
@@ -63,22 +63,22 @@ class CoreDataManager {
         item.setValue(news.content, forKey: "content")
         
         do { try managedContext.save() }
-        catch let error { debugPrint(error.localizedDescription) }
+        catch let error { debugPrint("<---! Add Fav News Error: \(error.localizedDescription) !--->") }
     }
     
-    private func removeNews(_ news: NewsArticle) {
+    private func removeNewsFromFav(_ news: NewsArticle) {
         do {
-            let fetchResults = try managedContext.fetch(fetchRequest)
-            
-            for result in fetchResults as! [NSManagedObject] {
-                let title = result.value(forKey: "title") as? String
-                if news.title == title {
-                    managedContext.delete(result)
+            if let fetchResults = try managedContext.fetch(fetchRequest) as? [NSManagedObject] {
+                for result in fetchResults {
+                    let title = result.value(forKey: "title") as? String
+                    if news.title == title {
+                        managedContext.delete(result)
+                    }
                 }
+                try managedContext.save()
             }
-            try managedContext.save()
         }
-        catch let error { debugPrint(error.localizedDescription) }
+        catch let error { debugPrint("<---! Remove Fav News Error: \(error.localizedDescription) !--->") }
     }
 }
 

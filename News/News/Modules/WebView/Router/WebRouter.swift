@@ -5,7 +5,6 @@
 //  Created by Oguzhan Yalcin on 14.09.2022.
 //
 
-import Foundation
 import UIKit
 
 final class WebRouter {
@@ -15,11 +14,4 @@ final class WebRouter {
     }
 }
 
-extension WebRouter: PWebPresenterToRouter {
-    
-    func showAlert(message: String) {
-        if let navigationController = AppRouter.shared.navigationController {
-            showAlert(from: navigationController, message: message)
-        }
-    }
-}
+extension WebRouter: PWebPresenterToRouter { }

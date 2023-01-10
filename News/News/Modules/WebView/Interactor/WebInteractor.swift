@@ -7,9 +7,21 @@
 
 import Foundation
 
-final class WebInteractor: Interactorable {
+final class WebInteractor {
     
-    public weak var presenter: WebPresenter?
+    weak var presenter: PWebInteractorToPresenter?
+    var url: URL?
     
-    public var apiState: ApiState = .beforeRequest
+    private var apiState: ApiState = .beforeRequest
+}
+
+extension WebInteractor: PWebPresenterToInteractor {
+    
+    // MARK: - Fetch
+    func fetchData<T>(request: T) { }
+    
+    // MARK: - Get News Url
+    func getNewsUrl() -> URL? {
+        return self.url
+    }
 }

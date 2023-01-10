@@ -8,15 +8,16 @@
 import UIKit
 import WebKit
 
-class WebViewController: BaseViewController {
+final class WebViewController: BaseViewController {
 
     @IBOutlet private weak var webView: WKWebView!
     
-    public var presenter: WebPresenter?
+    public var presenter: PWebViewToPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupViews()
         presenter?.viewDidLoad()
     }
     
@@ -25,22 +26,27 @@ class WebViewController: BaseViewController {
         
         presenter?.viewWillAppear()
     }
+    
+    private func setupViews() {
+        webView.backgroundColor = UIColor.clear
+        webView.configuration.allowsInlineMediaPlayback = false
+    }
 }
 
 extension WebViewController: PWebPresenterToView {
     
-    func setupViews() {
-        webView.backgroundColor = UIColor.clear
-        webView.configuration.allowsInlineMediaPlayback = false
+    func setWebView(isHidden: Bool) {
+        webView.isHidden = isHidden
     }
     
-    func setNavBar() {
-        setNavigationBarItems(title: "NEWS SOURCE".localized)
-    }
-    
-    func loadWebView(url: URL?) {
+    func setWebView(url: URL?) {
         if let newsUrl = url {
             webView.load(URLRequest(url: newsUrl))
         }
+    }
+    
+    // MARK: - PresenterToView
+    func setNavBar(title: String) {
+        setNavigationBarItems(title: title)
     }
 }

@@ -5,7 +5,6 @@
 //  Created by Oguzhan Yalcin on 11.09.2022.
 //
 
-import Foundation
 import UIKit
 
 extension UIView {
@@ -17,12 +16,12 @@ extension UIView {
         return nib.instantiate(withOwner: T.self, options: nil).first as? T
     }
     
-    func roundCorners(size:CGFloat) {
+    func roundCorners(size: CGFloat) {
         self.layer.cornerRadius = size
         self.clipsToBounds = true
     }
     
-    func setBorder(width:CGFloat, color:UIColor) {
+    func setBorder(width: CGFloat, color: UIColor) {
         self.layer.borderColor = color.cgColor
         self.layer.borderWidth = width
     }

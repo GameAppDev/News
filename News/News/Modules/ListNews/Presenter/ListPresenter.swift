@@ -9,79 +9,93 @@ import Foundation
 
 final class ListPresenter {
     
-    private weak var view: ListViewController?
-    private var interactor: ListInteractor?
-    private var router: ListRouter?
+    private weak var view: PListPresenterToView?
+    private var interactor: PListPresenterToInteractor?
+    private var router: PListPresenterToRouter?
     
-    public var news: [NewsArticle] = []
+    private var isBusy: Bool = true
+    private var page: Int = 1
+    private var searchedKey: String = ""
     
-    public var isBusy: Bool = true
-    public var page: Int = 1
-    public var searchedKey: String = ""
-    
-    init(view: ListViewController, interactor: ListInteractor, router: ListRouter) {
+    init(view: PListPresenterToView,
+         interactor: PListPresenterToInteractor,
+         router: PListPresenterToRouter) {
         self.view = view
         self.interactor = interactor
         self.router = router
     }
     
     private func resetSearchStatus() {
-        news.removeAll()
+        interactor?.removeNews()
         page = 1
     }
 }
 
 extension ListPresenter: PListViewToPresenter {
     
-    func getNews(isNewSearch: Bool) {
-        guard searchedKey != "" else { return }
-        isBusy = true
-        view?.setActivityIndicator(isOn: true)
-        
-        isNewSearch ? (resetSearchStatus()) : (page += 1)
-        
-        let params: NewsPost = NewsPost(searchedKey: searchedKey, page: page)
-        interactor?.fetchNewsData(params: params)
-    }
-    
-    func navigateToDetail(news: NewsArticle?) {
-        guard let selectedNews = news else {
-            router?.showAlert(message: "Please select a news")
-            return
-        }
-        router?.openDetailVC(news: selectedNews)
-    }
-    
-    func navigateToFavNews() {
-        router?.openFavNewsVC()
-    }
-    
+    // MARK: - ViewToPresenter
     func viewDidLoad() {
-        view?.setupViews()
-        view?.setupTableView()
+        view?.setTableView(isHidden: false)
     }
     
     func viewWillAppear() {
-        view?.setNavBar()
+        view?.setNavBar?(title: "NEWS".localized)
     }
 }
 
 extension ListPresenter: PListInteractorToPresenter {
     
-    func onSuccessNews(response: [NewsArticle]) {
+    func setData<T>(data: T) {
         isBusy = false
-        view?.setActivityIndicator(isOn: false)
-        
-        news.append(contentsOf: response)
-        view?.reloadTableView()
+        view?.hideIndicatorView()
+        view?.setTableView(isHidden: false)
     }
     
-    func onErrorNews(error: BaseError) {
+    func setError(error: BaseError) {
         isBusy = false
-        view?.setActivityIndicator(isOn: false)
-        
+        view?.hideIndicatorView()
         resetSearchStatus()
-        view?.reloadTableView()
-        router?.showAlert(message: error.errorMessage ?? "Try again".localized)
+        view?.setTableView(isHidden: false)
+        view?.showAlert(message: error.errorMessage ?? "Try again".localized)
+    }
+}
+
+extension ListPresenter: PListConnectorToPresenter {
+    
+    func handleNews(isNewSearch: Bool) {
+        guard searchedKey != "" else { return }
+        
+        isBusy = true
+        view?.showIndicatorView()
+        
+        isNewSearch ? (resetSearchStatus()) : (page += 1)
+        
+        let request: NewsRequest = NewsRequest(searchedKey: searchedKey, page: page)
+        interactor?.fetchData(request: request)
+    }
+    
+    func getNews() -> [NewsArticle] {
+        return interactor?.getNews() ?? []
+    }
+    
+    func handleDetail(index: Int) {
+        guard let news = interactor?.getNews(),
+              let selectedNews = news[safe: index] else {
+            view?.showAlert(message: "Please select a news".localized)
+            return
+        }
+        router?.navigateToDetail(with: selectedNews)
+    }
+    
+    func handleFavNews() {
+        router?.navigateToFav()
+    }
+    
+    func getBusyStatus() -> Bool {
+        return self.isBusy
+    }
+    
+    func setSearchedKey(text: String) {
+        self.searchedKey = text
     }
 }

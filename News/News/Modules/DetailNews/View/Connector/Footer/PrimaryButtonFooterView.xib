@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="wMA-Pe-cRF" customClass="PrimaryButtonFooterView" customModule="News" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wMA-Pe-cRF" id="ls1-Cq-Da9">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Teu-9F-XZd" userLabel="cellView">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQg-zv-9fF">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="primaryButtonClicked:" destination="-1" eventType="touchUpInside" id="JSI-cr-S8n"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HQg-zv-9fF" firstAttribute="top" secondItem="Teu-9F-XZd" secondAttribute="top" id="nAk-bQ-KPe"/>
+                            <constraint firstItem="HQg-zv-9fF" firstAttribute="leading" secondItem="Teu-9F-XZd" secondAttribute="leading" id="nLX-h3-gEN"/>
+                            <constraint firstAttribute="trailing" secondItem="HQg-zv-9fF" secondAttribute="trailing" id="nVb-be-CMj"/>
+                            <constraint firstAttribute="bottom" secondItem="HQg-zv-9fF" secondAttribute="bottom" id="qBv-ly-bpb"/>
+                            <constraint firstAttribute="width" secondItem="Teu-9F-XZd" secondAttribute="height" multiplier="64:9" id="uEv-nE-Rfz"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Teu-9F-XZd" secondAttribute="trailing" id="SeQ-Sn-P1x"/>
+                    <constraint firstAttribute="bottom" secondItem="Teu-9F-XZd" secondAttribute="bottom" id="TVe-c9-YiN"/>
+                    <constraint firstItem="Teu-9F-XZd" firstAttribute="leading" secondItem="ls1-Cq-Da9" secondAttribute="leading" id="bJt-pw-jdl"/>
+                    <constraint firstItem="Teu-9F-XZd" firstAttribute="top" secondItem="ls1-Cq-Da9" secondAttribute="top" id="zpG-Gv-Tby"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="7dh-3v-t36"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="primaryButton" destination="HQg-zv-9fF" id="n5Q-hg-cbK"/>
+            </connections>
+            <point key="canvasLocation" x="132" y="123"/>
+        </tableViewCell>
+    </objects>
+</document>

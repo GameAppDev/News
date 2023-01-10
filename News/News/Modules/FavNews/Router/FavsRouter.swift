@@ -5,7 +5,6 @@
 //  Created by Oguzhan Yalcin on 7.10.2022.
 //
 
-import Foundation
 import UIKit
 
 final class FavsRouter {
@@ -17,14 +16,8 @@ final class FavsRouter {
 
 extension FavsRouter: PFavsPresenterToRouter {
     
-    func openDetailVC(news: NewsArticle) {
+    func navigateToDetail(with news: NewsArticle) {
         let detailVC = DetailRouter().returnVC(news: news)
         AppRouter.shared.pushVC(detailVC, animated: true)
-    }
-    
-    func showAlert(message: String) {
-        if let navigationController = AppRouter.shared.navigationController {
-            showAlert(from: navigationController, message: message)
-        }
     }
 }

@@ -10,6 +10,8 @@ import CoreData
 
 final class CoreDataManager {
     
+    public static let shared = CoreDataManager()
+    
     public func getFavouriteNews() -> [NewsArticle] {
         var favNews: [NewsArticle] = []
         

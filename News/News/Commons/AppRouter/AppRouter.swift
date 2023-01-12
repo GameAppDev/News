@@ -9,7 +9,7 @@ import UIKit
 
 open class AppRouter: Routerable {
     
-    public static var shared = AppRouter()
+    public static let shared = AppRouter()
     
     private var navigationController: UINavigationController?
     

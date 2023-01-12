@@ -9,7 +9,8 @@ import UIKit
 
 final class ActivityIndicatorManager: NSObject {
     
-    static let shared = ActivityIndicatorManager()
+    public static let shared = ActivityIndicatorManager()
+    
     private var isShowing: Bool = false
     private var indicatorView: ActivityIndicator?
     private var animationDuration = 0.3

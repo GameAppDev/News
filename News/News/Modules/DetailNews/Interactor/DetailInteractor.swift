@@ -26,13 +26,13 @@ extension DetailInteractor: PDetailPresenterToInteractor {
     
     // MARK: - Get Fav News
     func getFavNewsStatus(news: NewsArticle) {
-        let isFav: Bool = CoreDataManager().getSelectedNewsStatus(news)
+        let isFav: Bool = CoreDataManager.shared.getSelectedNewsStatus(news)
         presenter?.setData(data: isFav)
     }
     
     // MARK: - Set Fav News
     func setFavNews(news: NewsArticle, isFav: Bool) {
-        CoreDataManager().setFavouriteNews(with: news, isFav: isFav)
+        CoreDataManager.shared.setFavouriteNews(with: news, isFav: isFav)
         presenter?.setData(data: isFav)
     }
 }

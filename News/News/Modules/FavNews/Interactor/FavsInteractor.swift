@@ -19,7 +19,7 @@ extension FavsInteractor: PFavsPresenterToInteractor {
     
     // MARK: - Fetch
     func fetchData<T>(request: T) {
-        self.favNews = CoreDataManager().getFavouriteNews()
+        self.favNews = CoreDataManager.shared.getFavouriteNews()
         presenter?.setData(data: self.favNews)
     }
     

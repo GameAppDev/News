@@ -33,7 +33,6 @@ final class ListPresenter {
 
 extension ListPresenter: PListViewToPresenter {
     
-    // MARK: - ViewToPresenter
     func viewDidLoad() {
         view?.setTableView(isHidden: false)
     }
@@ -70,7 +69,7 @@ extension ListPresenter: PListConnectorToPresenter {
         
         isNewSearch ? (resetSearchStatus()) : (page += 1)
         
-        let request: NewsRequest = NewsRequest(searchedKey: searchedKey, page: page)
+        let request: NewsRequest = NewsRequest.init(searchedKey: searchedKey, page: page)
         interactor?.fetchData(request: request)
     }
     
@@ -84,6 +83,7 @@ extension ListPresenter: PListConnectorToPresenter {
             view?.showAlert(message: "Please select a news".localized)
             return
         }
+        
         router?.navigateToDetail(with: selectedNews)
     }
     

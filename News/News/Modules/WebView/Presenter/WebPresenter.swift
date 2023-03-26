@@ -24,7 +24,6 @@ final class WebPresenter {
 
 extension WebPresenter: PWebViewToPresenter {
     
-    // MARK: - ViewToPresenter
     func viewDidLoad() {
         view?.setWebView(isHidden: true)
         if let url = interactor?.getNewsUrl() {
@@ -36,4 +35,11 @@ extension WebPresenter: PWebViewToPresenter {
     func viewWillAppear() {
         view?.setNavBar?(title: "NEWS SOURCE".localized)
     }
+}
+
+extension WebPresenter: PWebInteractorToPresenter {
+    
+    func setData<T>(data: T) { }
+    
+    func setError(error: BaseError) { }
 }

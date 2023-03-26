@@ -9,10 +9,9 @@ import UIKit
 
 final class NewsTableViewCell: UITableViewCell {
 
+    // MARK: Outlets
     @IBOutlet private weak var containerView: UIView!
-    
     @IBOutlet private weak var newsImageView: UIImageView!
-    
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var detailLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
@@ -20,10 +19,16 @@ final class NewsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        setupViews()
+        setupCell()
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
     }
     
-    private func setupViews() {
+    private func setupCell() {
         titleLabel.textColor = UIColor.titleColour
         titleLabel.font = UIFont.titleFont
         detailLabel.textColor = UIColor.textColor
@@ -35,16 +40,12 @@ final class NewsTableViewCell: UITableViewCell {
         containerView.roundCorners(size: CGFloat(6).ws)
         newsImageView.roundCorners(size: CGFloat(6).ws)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
     public func configureCell(news: NewsArticle) {
-        newsImageView.downloadImage(imageKey: news.urlToImage ?? "imageKey",
-                                    defaultImage: "DefaultNewsIcon")
+        newsImageView.downloadImage(
+            imageKey: news.urlToImage ?? "imageKey",
+            defaultImage: "DefaultNewsIcon"
+        )
         
         titleLabel.text = news.title ?? "Title"
         detailLabel.text = news.description ?? "Description"

@@ -33,8 +33,10 @@ extension UIViewController: PresenterToView {
 // MARK: - ViewToPresenter
 @objc protocol ViewToPresenter: AnyObject {
     func viewDidLoad()
-    func viewWillAppear()
+    @objc optional func viewWillAppear()
+    @objc optional func viewDidAppear()
     @objc optional func viewWillDisappear()
+    @objc optional func viewDidDisappear()
 }
 
 // MARK: - PresenterToInteractor
@@ -49,7 +51,7 @@ protocol InteractorToPresenter: AnyObject {
 }
 
 // MARK: - PresenterToRouter
-@objc protocol PresenterToRouter: AnyObject { }
+protocol PresenterToRouter: AnyObject { }
 
 // MARK: - ConnectorToPresenter
-@objc protocol ConnectorToPresenter: AnyObject { }
+protocol ConnectorToPresenter: AnyObject { }

@@ -9,11 +9,13 @@ import UIKit
 
 final class FavsViewController: BaseViewController {
 
+    // MARK: Outlets
     @IBOutlet private weak var collectionView: UICollectionView!
     
     var presenter: PFavsViewToPresenter?
     var collectionViewConnector: FavNewsCollectionView?
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,7 +26,7 @@ final class FavsViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        presenter?.viewWillAppear()
+        presenter?.viewWillAppear?()
     }
     
     private func setupCollectionView() {
@@ -42,7 +44,6 @@ extension FavsViewController: PFavsPresenterToView {
         collectionView.reloadData()
     }
     
-    // MARK: PresenterToView
     func setNavBar(title: String) {
         setNavigationBarItems(title: title)
     }

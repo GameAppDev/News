@@ -24,7 +24,6 @@ final class FavsPresenter {
 
 extension FavsPresenter: PFavsViewToPresenter {
     
-    // MARK: - ViewToPresenter
     func viewDidLoad() {
         view?.setCollectionView(isHidden: true)
     }

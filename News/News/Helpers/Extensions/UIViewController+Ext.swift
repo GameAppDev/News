@@ -22,10 +22,11 @@ extension UIViewController {
     func getNavigationBarFrame() -> CGRect {
         let topSAInsets = navigationController?.view.safeAreaInsets.top ?? 0
 
-        return .init(x: 0,
-                     y: -topSAInsets,
-                     width: navigationController?.navigationBar.bounds.width ?? 0,
-                     height: (navigationController?.navigationBar.bounds.height ?? 0) + topSAInsets
+        return .init(
+            x: 0,
+            y: -topSAInsets,
+            width: navigationController?.navigationBar.bounds.width ?? 0,
+            height: (navigationController?.navigationBar.bounds.height ?? 0) + topSAInsets
         )
     }
 }

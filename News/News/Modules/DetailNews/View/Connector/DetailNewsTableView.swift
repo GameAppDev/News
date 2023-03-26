@@ -33,15 +33,15 @@ extension DetailNewsTableView: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let detailCell = tableView.dequeueReusableCell(withIdentifier: DetailTableViewCell.className,
-                                                             for: indexPath) as? DetailTableViewCell
+        guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: DetailTableViewCell.className,
+                                                                for: indexPath) as? DetailTableViewCell
         else { return UITableViewCell() }
 
         if let news = presenter?.getSelectedNews() {
-            detailCell.configureCell(news: news)
+            tableViewCell.configureCell(news: news)
         }
 
-        return detailCell
+        return tableViewCell
     }
     
     // MARK: - Footer
@@ -50,12 +50,12 @@ extension DetailNewsTableView: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        guard let buttonCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: PrimaryButtonFooterView.className) as? PrimaryButtonFooterView
+        guard let footerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: PrimaryButtonFooterView.className) as? PrimaryButtonFooterView
         else { return UIView() }
         
-        buttonCell.configureCell(delegate: self, buttonTitle: "News Source".localized)
+        footerView.configureView(delegate: self, buttonTitle: "News Source".localized)
         
-        return buttonCell
+        return footerView
     }
 }
 

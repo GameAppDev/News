@@ -10,24 +10,26 @@ import WebKit
 
 final class WebViewController: BaseViewController {
 
+    // MARK: Outlets
     @IBOutlet private weak var webView: WKWebView!
     
     public var presenter: PWebViewToPresenter?
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupViews()
+        setupViewController()
         presenter?.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        presenter?.viewWillAppear()
+        presenter?.viewWillAppear?()
     }
     
-    private func setupViews() {
+    private func setupViewController() {
         webView.backgroundColor = UIColor.clear
         webView.configuration.allowsInlineMediaPlayback = false
     }
@@ -45,7 +47,6 @@ extension WebViewController: PWebPresenterToView {
         }
     }
     
-    // MARK: - PresenterToView
     func setNavBar(title: String) {
         setNavigationBarItems(title: title)
     }

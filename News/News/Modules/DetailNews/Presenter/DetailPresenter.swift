@@ -26,15 +26,6 @@ final class DetailPresenter {
 
 extension DetailPresenter: PDetailViewToPresenter {
     
-    func handleFavNewsStatus() {
-        guard let news = interactor?.getSelectedNews() else {
-            view?.showAlert(message: "Try again".localized)
-            return
-        }
-        interactor?.setFavNews(news: news, isFav: !isFav)
-    }
-    
-    // MARK: - ViewToPresenter
     func viewDidLoad() {
         view?.setTableView(isHidden: true)
         if let news = interactor?.getSelectedNews() {
@@ -44,6 +35,14 @@ extension DetailPresenter: PDetailViewToPresenter {
     
     func viewWillAppear() {
         view?.setNavBar?(title: "DETAIL".localized)
+    }
+    
+    func handleFavNewsStatus() {
+        guard let news = interactor?.getSelectedNews() else {
+            view?.showAlert(message: "Try again".localized)
+            return
+        }
+        interactor?.setFavNews(news: news, isFav: !isFav)
     }
 }
 

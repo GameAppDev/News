@@ -9,11 +9,13 @@ import UIKit
 
 final class DetailViewController: BaseViewController {
 
+    // MARK: Outlets
     @IBOutlet private weak var tableView: UITableView!
     
     var presenter: PDetailViewToPresenter?
     var tableViewConnector: DetailNewsTableView?
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,7 +26,7 @@ final class DetailViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        presenter?.viewWillAppear()
+        presenter?.viewWillAppear?()
     }
     
     private func setupTableView() {
@@ -56,15 +58,16 @@ extension DetailViewController: PDetailPresenterToView {
     func setFavButton(isFav: Bool) {
         let imageSystemName: String = isFav ? ("heart.fill") : ("heart")
         
-        let favButton = UIBarButtonItem(image: UIImage(systemName: imageSystemName),
-                                        style: .done,
-                                        target: self,
-                                        action: #selector(favNewsClicked(sender:)))
+        let favButton = UIBarButtonItem(
+            image: UIImage(systemName: imageSystemName),
+            style: .done,
+            target: self,
+            action: #selector(favNewsClicked(sender:))
+        )
         
         self.navigationItem.rightBarButtonItem = favButton
     }
     
-    // MARK: - PresenterToView
     func setNavBar(title: String) {
         setNavigationBarItems(title: title)
     }

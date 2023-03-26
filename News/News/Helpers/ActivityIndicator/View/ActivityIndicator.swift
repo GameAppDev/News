@@ -21,9 +21,11 @@ import Lottie
     }
 
     class func instanceFromNib() -> UIView {
-        guard let view = UINib(nibName: String(describing: Self.self),
-                               bundle: nil).instantiate(withOwner: nil,
-                                                        options: nil)[0] as? UIView
+        guard let view = UINib(
+            nibName: String(describing: Self.self),
+            bundle: nil
+        ).instantiate(withOwner: nil,
+                      options: nil)[0] as? UIView
         else { return UIView() }
         
         return view
@@ -41,7 +43,7 @@ import Lottie
         self.layoutIfNeeded()
     }
 
-    func setDefaultLoading() {
+    private func setDefaultLoading() {
         indicatorAnimationView.backgroundBehavior = .pauseAndRestore
         indicatorAnimationView.loopMode = .loop
         indicatorAnimationView.animation = LottieAnimation.named("indicator-animation-view")

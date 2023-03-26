@@ -11,8 +11,6 @@ final class WebInteractor {
     
     weak var presenter: PWebInteractorToPresenter?
     var url: URL?
-    
-    private var apiState: ApiState = .beforeRequest
 }
 
 extension WebInteractor: PWebPresenterToInteractor {
@@ -22,6 +20,6 @@ extension WebInteractor: PWebPresenterToInteractor {
     
     // MARK: - Get News Url
     func getNewsUrl() -> URL? {
-        return self.url
+        return url
     }
 }

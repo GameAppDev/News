@@ -9,11 +9,13 @@ import UIKit
 
 final class ListViewController: BaseViewController {
 
+    // MARK: Outlets
     @IBOutlet private weak var tableView: UITableView!
     
     var presenter: PListViewToPresenter?
     var tableViewConnector: ListNewsTableView?
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,7 +26,7 @@ final class ListViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        presenter?.viewWillAppear()
+        presenter?.viewWillAppear?()
     }
     
     private func setupTableView() {
@@ -45,13 +47,12 @@ final class ListViewController: BaseViewController {
 
 extension ListViewController: PListPresenterToView {
     
+    func setNavBar(title: String) {
+        setNavigationBarItems(title: title)
+    }
+    
     func setTableView(isHidden: Bool) {
         tableView.isHidden = isHidden
         tableView.reloadData()
-    }
-    
-    // MARK: PresenterToView
-    func setNavBar(title: String) {
-        setNavigationBarItems(title: title)
     }
 }

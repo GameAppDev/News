@@ -14,11 +14,19 @@ extension UICollectionView {
     }
     
     func registerHeaderCell<T: UICollectionReusableView>(_ cell: T.Type) {
-        register(nibFromClass(cell), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: cell.className)
+        register(
+            nibFromClass(cell),
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: cell.className
+        )
     }
     
     func registerFooterCell<T: UICollectionReusableView>(_ cell: T.Type) {
-        register(nibFromClass(cell), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: cell.className)
+        register(
+            nibFromClass(cell),
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+            withReuseIdentifier: cell.className
+        )
     }
     
     fileprivate func nibFromClass(_ type: UICollectionReusableView.Type) -> UINib {

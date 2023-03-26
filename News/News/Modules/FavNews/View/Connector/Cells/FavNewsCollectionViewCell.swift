@@ -9,18 +9,18 @@ import UIKit
 
 final class FavNewsCollectionViewCell: UICollectionViewCell {
 
+    // MARK: Outlets
     @IBOutlet private weak var containerView: UIView!
-    
     @IBOutlet private weak var newsImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        setupViews()
+        setupCell()
     }
     
-    private func setupViews() {
+    private func setupCell() {
         titleLabel.textColor = UIColor.titleColour
         titleLabel.font = UIFont.titleFont
         
@@ -30,7 +30,10 @@ final class FavNewsCollectionViewCell: UICollectionViewCell {
     }
     
     public func configureCell(news: NewsArticle) {
-        newsImageView.downloadImage(imageKey: news.urlToImage ?? "imageKey", defaultImage: "DefaultNewsIcon")
+        newsImageView.downloadImage(
+            imageKey: news.urlToImage ?? "imageKey",
+            defaultImage: "DefaultNewsIcon"
+        )
         
         titleLabel.text = news.title ?? "Title"
     }

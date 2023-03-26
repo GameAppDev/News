@@ -5,7 +5,7 @@
 //  Created by Oguzhan Yalcin on 16.09.2022.
 //
 
-import Foundation
+import UIKit
 import CoreData
 
 final class CoreDataManager {
@@ -87,7 +87,7 @@ final class CoreDataManager {
 extension CoreDataManager {
     
     var managedContext: NSManagedObjectContext {
-        return appDelegate.persistentContainer.viewContext
+        return (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     }
     
     var fetchRequest: NSFetchRequest<NSFetchRequestResult> {

@@ -13,26 +13,14 @@ final class CoreDataManager {
     public static let shared = CoreDataManager()
     
     public func getFavouriteNews() -> [NewsArticle] {
-        var favNews: [NewsArticle] = []
+        var favNewsCoreData: [FavNews] = []
         
-        do {
-            if let fetchResults = try managedContext.fetch(fetchRequest) as? [NSManagedObject] {
-                for result in fetchResults {
-                    let news = NewsArticle(
-                        source: NewsSource(name: result.value(forKey: "name") as? String),
-                        author: result.value(forKey: "author") as? String,
-                        title: result.value(forKey: "title") as? String,
-                        description: result.value(forKey: "desc") as? String,
-                        url: result.value(forKey: "url") as? String,
-                        urlToImage: result.value(forKey: "urlToImage") as? String,
-                        publishedAt: result.value(forKey: "publishedAt") as? String,
-                        content: result.value(forKey: "content") as? String
-                    )
-                    favNews.append(news)
-                }
-            }
-        }
-        catch let error { debugPrint("<---! Get Fav News Error: \(error.localizedDescription) !--->") }
+        do { favNewsCoreData = try managedContext.fetch(fetchRequestForRepository) }
+        catch let error { debugPrint("<---! Get Fav Repos Error: \(error.localizedDescription) !--->") }
+        
+        let favNews: [NewsArticle] = favNewsCoreData.map({ model in
+            NewsArticle(coreDataModel: model)
+        })
         
         return favNews
     }
@@ -54,7 +42,6 @@ final class CoreDataManager {
         guard let entity = NSEntityDescription.entity(forEntityName: "FavNews", in: managedContext) else { return }
         
         let item = NSManagedObject(entity: entity, insertInto: managedContext)
-        
         item.setValue(news.source?.name, forKey: "name")
         item.setValue(news.author, forKey: "author")
         item.setValue(news.title, forKey: "title")
@@ -92,5 +79,10 @@ extension CoreDataManager {
     
     var fetchRequest: NSFetchRequest<NSFetchRequestResult> {
         return NSFetchRequest<NSFetchRequestResult>(entityName: "FavNews")
+    }
+    
+    var fetchRequestForRepository: NSFetchRequest<FavNews> {
+        return FavNews.fetchRequest()
+        //return NSFetchRequest<Repository>(entityName: "FavNews")
     }
 }

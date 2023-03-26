@@ -1,7 +1,7 @@
 # News
 ---
 
-![list](https://www.linkpicture.com/q/Simulator-Screen-Shot-iPhone-13-Pro-2022-10-09-at-13.21.23.png) ![search](https://www.linkpicture.com/q/Simulator-Screen-Shot-iPhone-13-Pro-2022-10-09-at-13.21.35.png) ![search](https://www.linkpicture.com/q/Simulator-Screen-Shot-iPhone-13-Pro-2022-10-09-at-13.21.58.png) 
+<img src="https://www.linkpicture.com/q/Simulator-Screen-Shot-iPhone-13-Pro-2022-10-09-at-13.21.23.png" width="393" height="852"> <img src="https://www.linkpicture.com/q/Simulator-Screen-Shot-iPhone-13-Pro-2022-10-09-at-13.21.35.png" width="393" height="852"> <img src="https://www.linkpicture.com/q/Simulator-Screen-Shot-iPhone-13-Pro-2022-10-09-at-13.21.58.png" width="393" height="852">
 
 
 ## Overview

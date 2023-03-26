@@ -11,8 +11,6 @@ final class DetailInteractor {
     
     weak var presenter: PDetailInteractorToPresenter?
     var selectedNews: NewsArticle?
-    
-    private var apiState: ApiState = .beforeRequest
 }
 
 extension DetailInteractor: PDetailPresenterToInteractor {
@@ -21,7 +19,7 @@ extension DetailInteractor: PDetailPresenterToInteractor {
     
     // MARK: - Get Selected News
     func getSelectedNews() -> NewsArticle? {
-        return self.selectedNews
+        return selectedNews
     }
     
     // MARK: - Get Fav News

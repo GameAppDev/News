@@ -11,8 +11,6 @@ final class ListInteractor {
     
     weak var presenter: PListInteractorToPresenter?
     private var news: [NewsArticle] = []
-    
-    private var apiState: ApiState = .beforeRequest
 }
 
 extension ListInteractor: PListPresenterToInteractor {
@@ -22,14 +20,16 @@ extension ListInteractor: PListPresenterToInteractor {
         guard let request = request as? NewsRequest else { return }
         
         let endPoint: String =  "everything"
-        let requestParams: [String: String] = ["q": request.searchedKey,
-                                               "page": String(request.page),
-                                               "apiKey": ApplicationConstant.apiKey]
+        let requestParams: [String: String] = [
+            "q": request.searchedKey,
+            "page": String(request.page),
+            "apiKey": ApplicationConstant.apiKey
+        ]
         NetworkManager().get(path: endPoint, requestParams, onSuccess: { [weak self] (response: BaseResponse<NewsResponse>) in
             guard let self = self else { return }
             
             guard let data = response.model,
-                  let newsArticles = response.model?.articles else { return }
+                  let newsArticles = response.model?.news else { return }
             
             debugPrint("<--- Service gets response: \(data) - count: \(newsArticles.count) - path: \(endPoint) --->")
             self.news.append(contentsOf: newsArticles)
@@ -45,11 +45,11 @@ extension ListInteractor: PListPresenterToInteractor {
     
     // MARK: - Get News
     func getNews() -> [NewsArticle] {
-        return self.news
+        return news
     }
     
     // MARK: - Remove News
     func removeNews() {
-        self.news.removeAll()
+        news.removeAll()
     }
 }

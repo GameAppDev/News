@@ -39,7 +39,7 @@ extension ListNewsTableView: UITableViewDataSource, UITableViewDelegate {
 
         if let news = presenter?.getNews(),
            let searchedNews = news[safe: indexPath.row] {
-                newsCell.configureCell(news: searchedNews)
+            newsCell.configureCell(news: searchedNews)
         }
 
         return newsCell
@@ -78,7 +78,8 @@ extension ListNewsTableView: UITableViewDataSource, UITableViewDelegate {
         guard let buttonView = tableView.dequeueReusableHeaderFooterView(withIdentifier: PrimaryButtonFooterView.className) as? PrimaryButtonFooterView
         else { return UIView() }
         
-        buttonView.configureCell(delegate: self, buttonTitle: "Fav News".localized)
+        buttonView.configureView(delegate: self,
+                                 buttonTitle: "Fav News".localized)
         
         return buttonView
     }

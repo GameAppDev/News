@@ -41,16 +41,16 @@ extension FavNewsCollectionView: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let favNewsCell = collectionView.dequeueReusableCell(withReuseIdentifier: FavNewsCollectionViewCell.className,
-                                                                   for: indexPath) as? FavNewsCollectionViewCell
+        guard let collectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: FavNewsCollectionViewCell.className,
+                                                                          for: indexPath) as? FavNewsCollectionViewCell
         else { return UICollectionViewCell() }
         
         if let favNews = presenter?.getFavNews(),
            let news = favNews[safe: indexPath.row] {
-                favNewsCell.configureCell(news: news)
+            collectionViewCell.configureCell(news: news)
         }
         
-        return favNewsCell
+        return collectionViewCell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

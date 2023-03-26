@@ -1,22 +1,24 @@
 //
-//  ListEntity.swift
+//  NewsResponse.swift
 //  News
 //
-//  Created by Oguzhan Yalcin on 11.09.2022.
+//  Created by Oguzhan Yalcin on 19.02.2023.
 //
 
 import Foundation
 
-struct NewsRequest: Codable {
-    let searchedKey: String
-    let page: Int
-}
-
 struct NewsResponse: Codable {
     let status: String?
     let totalResults: Int?
-    let articles: [NewsArticle]?
+    let news: [NewsArticle]?
     let message: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case status
+        case totalResults
+        case news = "articles"
+        case message
+    }
 }
 
 struct NewsArticle: Codable {

@@ -19,7 +19,7 @@ struct WebBuilder {
         
         viewController.presenter = presenter
         
-        interactor.presenter = presenter as? any PWebInteractorToPresenter
+        interactor.presenter = presenter
         interactor.url = url
         
         return viewController

@@ -9,15 +9,16 @@ import UIKit
 
 final class SearchBarHeaderView: UITableViewHeaderFooterView {
 
+    // MARK: Outlets
     @IBOutlet private weak var searchBar: UISearchBar!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        setupViews()
+        setupView()
     }
     
-    private func setupViews() {
+    private func setupView() {
         searchBar.searchTextField.textColor = UIColor.textColor
         searchBar.searchTextField.tintColor = UIColor.textColor
         searchBar.searchTextField.font = UIFont.textFont

@@ -13,6 +13,7 @@ protocol PrimaryButtonDelegate: AnyObject {
 
 final class PrimaryButtonFooterView: UITableViewHeaderFooterView {
 
+    // MARK: Outlets
     @IBOutlet private weak var primaryButton: UIButton!
     
     private weak var delegate: PrimaryButtonDelegate?
@@ -20,17 +21,17 @@ final class PrimaryButtonFooterView: UITableViewHeaderFooterView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        setupViews()
+        setupView()
     }
 
-    private func setupViews() {
+    private func setupView() {
         primaryButton.setTitle("", for: .normal)
         primaryButton.titleLabel?.font = UIFont.buttonTitleFont
         primaryButton.setTitleColor(UIColor.titleColour, for: .normal)
         primaryButton.backgroundColor = UIColor.itemBGColour
     }
     
-    public func configureCell(delegate: PrimaryButtonDelegate, buttonTitle: String) {
+    public func configureView(delegate: PrimaryButtonDelegate, buttonTitle: String) {
         primaryButton.setTitle(buttonTitle, for: .normal)
         
         self.delegate = delegate

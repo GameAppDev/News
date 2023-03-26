@@ -8,13 +8,6 @@
 import Foundation
 import Alamofire
 
-enum ApiState {
-    case beforeRequest
-    case loading
-    case success
-    case failure
-}
-
 struct BaseResponse<T: Codable> {
     var model: T?
     var message: String?

@@ -30,9 +30,24 @@ struct NewsArticle: Codable {
     let urlToImage: String?
     let publishedAt: String?
     let content: String?
+    
+    init(coreDataModel: FavNews) {
+        self.source = NewsSource(name: coreDataModel.name)
+        self.author = coreDataModel.author
+        self.title = coreDataModel.title
+        self.description = coreDataModel.desc
+        self.url = coreDataModel.url
+        self.urlToImage = coreDataModel.urlToImage
+        self.publishedAt = coreDataModel.publishedAt
+        self.content = coreDataModel.content
+    }
 }
 
 struct NewsSource: Codable {
     //let id: String?
     let name: String?
+    
+    init(name: String?) {
+        self.name = name
+    }
 }
